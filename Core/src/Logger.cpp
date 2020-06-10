@@ -1,5 +1,7 @@
-#include "Logger.h"
-#include "LogLevel.h"
+#include <string>
+
+#include "../include/Logger.h"
+#include "../include/LogLevel.h"
 
 namespace JadeCore
 {

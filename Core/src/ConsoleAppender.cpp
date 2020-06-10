@@ -1,9 +1,9 @@
 #include <string>
 #include <iostream>
 
-#include "ConsoleAppender.h"
-#include "../LogLevel.h"
-#include "../../Utils/ArrayUtils.h"
+#include "../include/ConsoleAppender.h"
+#include "../include/LogLevel.h"
+#include "../include//ArrayUtils.h"
 
 namespace JadeCore
 {

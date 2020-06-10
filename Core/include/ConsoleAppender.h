@@ -3,8 +3,8 @@
 #ifndef JADE_CORE_LOG_APPENDERS_CONSOLEAPPENDER_H_
 #define JADE_CORE_LOG_APPENDERS_CONSOLEAPPENDER_H_
 
-#include "../LogLevel.h"
-#include "../ILogAppender.h"
+#include "LogLevel.h"
+#include "ILogAppender.h"
 
 namespace JadeCore
 {
