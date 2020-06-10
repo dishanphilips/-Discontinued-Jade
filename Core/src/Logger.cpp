@@ -9,14 +9,14 @@ namespace JadeCore
 	{
 	}
 
-	void Logger::RegisterAppender(ILogAppender &appender)
+	void Logger::RegisterAppender(ILogAppender* appender)
 	{
-		_appenders.push_back(&appender);
+		_appenders.push_back(appender);
 	}
 
-	void Logger::UnregisterAppender(ILogAppender &appender)
+	void Logger::UnregisterAppender(ILogAppender* appender)
 	{
-		_appenders.remove(&appender);
+		_appenders.remove(appender);
 	}
 
 	void Logger::Log(LogLevel level, std::string message, std::string tags[])

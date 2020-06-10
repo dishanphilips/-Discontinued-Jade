@@ -12,4 +12,7 @@ file(GLOB jade_server_source_files
 )
 add_executable (JadeServer ${jade_server_source_files})
 
+# Link Jade Core
+target_link_libraries(JadeServer JadeCore)
+
 # TODO: Add tests and install targets if needed.

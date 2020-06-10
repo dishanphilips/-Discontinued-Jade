@@ -8,7 +8,7 @@
 
 namespace JadeCore
 {
-	class ConsoleAppender : ILogAppender
+	class ConsoleAppender : public ILogAppender
 	{
 	public:
 		void Append(LogLevel level, std::string message, std::string tags[]) override;

@@ -29,13 +29,13 @@ namespace JadeCore
 		 * \brief Registers a logging appender to a list of appenders
 		 * \param appender
 		 */
-		static void RegisterAppender(ILogAppender &appender);
+		static void RegisterAppender(ILogAppender* appender);
 
 		/**
 		 * \brief Removes a given logging appender
 		 * \param appender
 		 */
-		static void UnregisterAppender(ILogAppender &appender);
+		static void UnregisterAppender(ILogAppender* appender);
 
 		/**
 		 * \brief Logs a given log with a tag and level in all appenders
