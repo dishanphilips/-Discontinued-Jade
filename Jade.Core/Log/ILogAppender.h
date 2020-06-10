@@ -3,14 +3,20 @@
 #ifndef JADE_CORE_LOG_ILOGAPPENDER_H_
 #define JADE_CORE_LOG_ILOGAPPENDER_H_
 
-#include <string>
-
-#include "Logger.h"
-
-class ILogAppender
+namespace JadeCore
 {
+	class ILogAppender
+	{
 	public:
-		virtual void Log(LogLevel level, std::string tags[], std::string message);
-};
+		
+		/**
+		 * \brief Append a log with the given data
+		 * \param level 
+		 * \param tags 
+		 * \param message 
+		 */
+		virtual void Append(LogLevel level, std::string tags[], std::string message);
+	};
+}
 
 #endif

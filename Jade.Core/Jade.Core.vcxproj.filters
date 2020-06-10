@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Log">
+      <UniqueIdentifier>{9e111a09-4353-4bde-8615-90e39c82da68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Log\Appenders">
+      <UniqueIdentifier>{75976755-483b-4d15-8858-5856351ef05d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{5e5ee320-67b8-435c-9be9-49c226924656}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Log\Logger.h">
+      <Filter>Log</Filter>
+    </ClInclude>
+    <ClInclude Include="Log\ILogAppender.h">
+      <Filter>Log</Filter>
+    </ClInclude>
+    <ClInclude Include="Log\Appenders\ConsoleAppender.h">
+      <Filter>Log\Appenders</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\ArrayUtils.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Log\Logger.cpp">
+      <Filter>Log</Filter>
+    </ClCompile>
+    <ClCompile Include="Log\Appenders\ConsoleAppender.cpp">
+      <Filter>Log\Appenders</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils\ArrayUtils.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
