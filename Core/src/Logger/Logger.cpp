@@ -10,7 +10,7 @@ namespace JadeCore
 	static std::list<ILogAppender*> _appenders;
 	
 	Logger::Logger()
-	{;
+	{
 	}
 
 	void Logger::RegisterAppender(ILogAppender* appender)

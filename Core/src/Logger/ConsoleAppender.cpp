@@ -3,6 +3,7 @@
 
 #include "../../include/Logger/ConsoleAppender.h"
 #include "../../include/Logger/LogLevel.h"
+#include "../../include/Utils/DateTimeUtils.h"
 #include "../../include/Utils/StringUtils.h"
 #include "../../include/Utils/VectorUtils.h"
 
@@ -32,6 +33,6 @@ namespace JadeCore
 		}
 
 		std::vector<std::string> tagVector = StringUtils::Split(tags, ',', "[", "]");
-		std::cout << logLevel + "\t" + VectorUtils::ToString(tagVector, "") + "\t" + message;
+		std::cout << DateTimeUtils::GetCurrentDateTime() + "\t" + logLevel + "\t" + VectorUtils::ToString(tagVector, "") + "\t" + message + "\n";
 	}
 }
