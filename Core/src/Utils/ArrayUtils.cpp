@@ -1,7 +1,6 @@
 #include <string>
 
-#include "../include/ArrayUtils.h"
-
+#include "../../include/Utils/ArrayUtils.h"
 
 namespace JadeCore
 {
@@ -9,7 +8,7 @@ namespace JadeCore
 	{
 		std::string arrayString = "";
 
-		for (int arrayIndex = 0; arrayIndex < array->length(); ++arrayIndex)
+		for (int arrayIndex = 0; arrayIndex < array->size(); ++arrayIndex)
 		{
 			arrayString += array[arrayIndex];
 

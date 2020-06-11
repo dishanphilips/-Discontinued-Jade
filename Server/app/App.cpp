@@ -1,11 +1,11 @@
 #pragma once
 
-#include "../../Core/include/Logger.h"
-#include "../../Core/include/ConsoleAppender.h"
+#include "../../Core/include/Logger/Logger.h"
+#include "../../Core/include/Logger/ConsoleAppender.h"
 
 int main(int, char* [])
 {
-	JadeCore::ConsoleAppender* appender = new JadeCore::ConsoleAppender();
+	const auto appender = new JadeCore::ConsoleAppender();
 	JadeCore::Logger::RegisterAppender(appender);
-	JadeCore::Logger::LogInfo("Hello, Jade Server!", new std::string[1]{ "Startup" });
+	JadeCore::Logger::LogInfo("Hello, Jade Server!", "Startup,Server");
 }

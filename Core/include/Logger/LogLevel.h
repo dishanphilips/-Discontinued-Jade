@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef JADE_CORE_LOG_LOGLEVEL_H_
-#define JADE_CORE_LOG_LOGLEVEL_H_
+#ifndef JADE_CORE_INCLUDE_LOG_LOGLEVEL_H_
+#define JADE_CORE_INCLUDE_LOG_LOGLEVEL_H_
 
 namespace JadeCore
 {

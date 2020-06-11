@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef JADE_CORE_LOG_LOGGER_H_
-#define JADE_CORE_LOG_LOGGER_H_
+#ifndef JADE_CORE_INCLUDE_LOG_LOGGER_H_
+#define JADE_CORE_INCLUDE_LOG_LOGGER_H_
 
 #include <list>
 #include <string>
@@ -17,7 +17,7 @@ namespace JadeCore
 	static class Logger
 	{
 	private:
-		static std::list<ILogAppender*> _appenders;
+		
 	public:
 
 		/**
@@ -43,42 +43,42 @@ namespace JadeCore
 		 * \param message Message of the log
 		 * \param tags Tags to filter logs by
 		 */
-		static void Log(LogLevel level, std::string message, std::string tags[]);
+		static void Log(LogLevel level, std::string message, std::string tags);
 
 		/**
 		 * \brief Append a trace log
 		 * \param message
 		 * \param tags
 		 */
-		static void LogTrace(std::string message, std::string tags[]);
+		static void LogTrace(std::string message, std::string tags);
 
 		/**
 		 * \brief Append a debug log
 		 * \param message
 		 * \param tags
 		 */
-		static void LogDebug(std::string message, std::string tags[]);
+		static void LogDebug(std::string message, std::string tags);
 
 		/**
 		 * \brief Append a info log
 		 * \param message
 		 * \param tags* 
 		 */
-		static void LogInfo(std::string message, std::string tags[]);
+		static void LogInfo(std::string message, std::string tags);
 
 		/**
 		 * \brief Append a warning log
 		 * \param message
 		 * \param tags
 		 */
-		static void LogWarning(std::string message, std::string tags[]);
+		static void LogWarning(std::string message, std::string tags);
 
 		/**
 		 * \brief Append an error log
 		 * \param message
 		 * \param tags
 		 */
-		static void LogError(std::string message, std::string tags[]);
+		static void LogError(std::string message, std::string tags);
 	};
 }
 

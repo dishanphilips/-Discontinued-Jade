@@ -9,6 +9,8 @@ file(GLOB jade_core_source_files
     "Core/*.h"
     "Core/*/*.cpp"
     "Core/*/*.h"
+    "Core/*/*/*.cpp"
+    "Core/*/*/*.h"
 )
 add_library (JadeCore ${jade_core_source_files})
 

@@ -1,12 +1,16 @@
 #include <string>
 
-#include "../include/Logger.h"
-#include "../include/LogLevel.h"
+#include "../../include/Logger/Logger.h"
 
 namespace JadeCore
 {
+	/**
+	 * \brief List of appenders
+	 */
+	static std::list<ILogAppender*> _appenders;
+	
 	Logger::Logger()
-	{
+	{;
 	}
 
 	void Logger::RegisterAppender(ILogAppender* appender)
@@ -19,7 +23,7 @@ namespace JadeCore
 		_appenders.remove(appender);
 	}
 
-	void Logger::Log(LogLevel level, std::string message, std::string tags[])
+	void Logger::Log(LogLevel level, std::string message, std::string tags)
 	{
 		for (ILogAppender *appender : _appenders)
 		{
@@ -27,27 +31,27 @@ namespace JadeCore
 		}
 	}
 
-	void Logger::LogTrace(std::string message, std::string tags[])
+	void Logger::LogTrace(std::string message, std::string tags)
 	{
 		Log(LogLevel::Trace, message, tags);
 	}
 
-	void Logger::LogDebug(const std::string message, std::string tags[])
+	void Logger::LogDebug(const std::string message, std::string tags)
 	{
 		Log(LogLevel::Debug, message, tags);
 	}
 
-	void Logger::LogInfo(const std::string message, std::string tags[])
+	void Logger::LogInfo(const std::string message, std::string tags)
 	{
 		Log(LogLevel::Info, message, tags);
 	}
 
-	void Logger::LogWarning(const std::string message, std::string tags[])
+	void Logger::LogWarning(const std::string message, std::string tags)
 	{
 		Log(LogLevel::Warning, message, tags);
 	}
 
-	void Logger::LogError(const std::string message, std::string tags[])
+	void Logger::LogError(const std::string message, std::string tags)
 	{
 		Log(LogLevel::Error, message, tags);
 	}
