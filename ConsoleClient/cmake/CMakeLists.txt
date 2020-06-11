@@ -4,12 +4,17 @@ cmake_minimum_required (VERSION 3.8)
 
 #Jade JadeConsoleClient
 project ("JadeConsoleClient")
-file(GLOB jade_console_client_source_files
-    "ConsoleClient/*.cpp"
-    "ConsoleClient/*.h"
-    "ConsoleClient/*/*.cpp"
-    "ConsoleClient/*/*.h"
-)
-add_executable (JadeConsoleClient ${jade_console_client_source_files})
 
-# TODO: Add tests and install targets if needed.
+add_executable (JadeConsoleClient "ConsoleClient/src/Version.cpp")
+
+target_sources(JadeConsoleClient
+	PUBLIC
+		# Version
+		${CMAKE_CURRENT_SOURCE_DIR}"/ConsoleClient/include/Version.h"
+	PRIVATE
+		# App
+		${CMAKE_CURRENT_SOURCE_DIR}"/ConsoleClient/app/App.cpp"
+)
+
+# Link Jade Core
+target_link_libraries(JadeConsoleClient JadeCore)

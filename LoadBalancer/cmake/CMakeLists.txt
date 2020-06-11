@@ -4,12 +4,19 @@ cmake_minimum_required (VERSION 3.8)
 
 #Jade LoadBalancer
 project ("JadeLoadBalancer")
-file(GLOB jade_load_balancer_source_files
-    "LoadBalancer/*.cpp"
-    "LoadBalancer/*.h"
-    "LoadBalancer/*/*.cpp"
-    "LoadBalancer/*/*.h"
-)
-add_executable (JadeLoadBalancer ${jade_load_balancer_source_files})
 
-# TODO: Add tests and install targets if needed.
+project ("JadeLoadBalancer")
+
+add_executable (JadeLoadBalancer "LoadBalancer/src/Version.cpp")
+
+target_sources(JadeLoadBalancer
+	PUBLIC
+		# Version
+		${CMAKE_CURRENT_SOURCE_DIR}"/LoadBalancer/include/Version.h"
+	PRIVATE
+		# App
+		${CMAKE_CURRENT_SOURCE_DIR}"/LoadBalancer/app/App.cpp"
+)
+
+# Link Jade Core
+target_link_libraries(JadeLoadBalancer JadeCore)
