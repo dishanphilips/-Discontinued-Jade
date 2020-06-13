@@ -3,44 +3,44 @@
 cmake_minimum_required (VERSION 3.8)
 
 #Jade Core
-project ("JadeCore")
+project ("jade_core")
 
-add_library (JadeCore "Core/src/Version.cpp")
+add_library (jade_core "core/src/Version.cpp")
 
-target_sources(JadeCore
+target_sources(jade_core
 	PUBLIC
 		# Version
-		${CMAKE_CURRENT_SOURCE_DIR}"/Core/include/Version.h"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/include/version.h"
 
 		# Logger
-		${CMAKE_CURRENT_SOURCE_DIR}"/Core/include/Logger/LogLevel.h"
-		${CMAKE_CURRENT_SOURCE_DIR}"/Core/include/Logger/Logger.h"
-		${CMAKE_CURRENT_SOURCE_DIR}"/Core/include/Logger/ILogAppender.h"
-		${CMAKE_CURRENT_SOURCE_DIR}"/Core/include/Logger/ConsoleAppender.h"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/include/logger/log_level.h"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/include/logger/logger.h"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/include/logger/i_log_appender.h"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/include/logger/console_appender.h"
 
 		# Ticker
-		${CMAKE_CURRENT_SOURCE_DIR}"/Core/include/Tick/Ticker.h"
-		${CMAKE_CURRENT_SOURCE_DIR}"/Core/include/Tick/TickableBase.h"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/include/tick/ticker.h"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/include/tick/tickable_base.h"
 
 		# Utils
-		${CMAKE_CURRENT_SOURCE_DIR}"/Core/include/Utils/StringUtils.h"
-		${CMAKE_CURRENT_SOURCE_DIR}"/Core/include/Utils/ArrayUtils.h"
-		${CMAKE_CURRENT_SOURCE_DIR}"/Core/include/Utils/VectorUtils.h"
-		${CMAKE_CURRENT_SOURCE_DIR}"/Core/include/Utils/DateTimeUtils.h"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/include/utils/string_utils.h"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/include/utils/array_utils.h"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/include/utils/vector_utils.h"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/include/utils/date_time_utils.h"
 	PRIVATE
 		# Logger
-		${CMAKE_CURRENT_SOURCE_DIR}"/Core/src/Logger/Logger.cpp"
-		${CMAKE_CURRENT_SOURCE_DIR}"/Core/src/Logger/ConsoleAppender.cpp"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/logger/logger.cpp"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/logger/console_appender.cpp"
 
 		# Ticker
-		${CMAKE_CURRENT_SOURCE_DIR}"/Core/src/Tick/Ticker.cpp"
-		${CMAKE_CURRENT_SOURCE_DIR}"/Core/src/Tick/TickableBase.cpp"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/tick/ticker.cpp"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/tick/tickable_base.cpp"
 
 		# Utils
-		${CMAKE_CURRENT_SOURCE_DIR}"/Core/src/Utils/StringUtils.cpp"
-		${CMAKE_CURRENT_SOURCE_DIR}"/Core/src/Utils/ArrayUtils.cpp"
-		${CMAKE_CURRENT_SOURCE_DIR}"/Core/src/Utils/VectorUtils.cpp"
-		${CMAKE_CURRENT_SOURCE_DIR}"/Core/src/Utils/DateTimeUtils.cpp"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/utils/string_utils.cpp"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/utils/array_utils.cpp"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/utils/vector_utils.cpp"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/utils/date_time_utils.cpp"
 )
 
 # TODO: Add tests and install targets if needed.

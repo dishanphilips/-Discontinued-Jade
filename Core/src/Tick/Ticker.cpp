@@ -1,55 +1,77 @@
 #pragma once
 
-#include "../../include/Tick/Ticker.h"
-
 #include <thread>
+#include <future>
 #include <list>
 #include <chrono>
 
-namespace JadeCore
+#include "../../include/Tick/Ticker.h"
+
+namespace jade_core
 {
-
 	/**
-		 * \brief The interval in MS to tick
-		 */
-	static int _interval;
-
-	/**
-	 * \brief Flag to continue ticking
+	 * \brief _interval declaration
 	 */
-	static bool _continue;
+	int ticker::_interval;
+
+	/**
+	 * \brief _continue declaration
+	 */
+	bool ticker::_continue;
+
+	/**
+	 * \brief _tickables declaration
+	 */
+	std::list<tickable_base*> ticker::_tickables;
+
+	/**
+	 * \brief _results declaration
+	 */
+	std::vector<std::future<void>*> ticker::_results;
 	
-	/**
-	 * \brief A list of ticables
-	 */
-	static std::list<TickableBase*> _tickables;
-		
-	void Ticker::Start(int interval)
+	void ticker::start(int interval)
 	{
+		// Initialize
 		_interval = interval;
 		_continue = true;
 		
 		while (_continue)
 		{
-			for (TickableBase* tickable : _tickables)
+			// Tick all the tick-ables
+			for (tickable_base* tickable : _tickables)
 			{
-				tickable->Tick();
+				// Invoke the tick asynchronously
+				_results.push_back(&std::async(std::launch::async, &tickable_base::tick, tickable));
 			}
+
+			// Wait for the results
+			for (std::future<void>* result : _results)
+			{
+				// If the result is not ready, wait for it
+				if(result->_Is_ready() == false)
+				{
+					result->get();
+				}
+			}
+
+			// Clear the results
+			_results.clear();
+			
 			std::this_thread::sleep_for(std::chrono::milliseconds(_interval));
 		}
 	}
 
-	void Ticker::Stop()
+	void ticker::stop()
 	{
 		_continue = false;
 	}
 	
-	void Ticker::RegisterTicker(TickableBase* tickable)
+	void ticker::register_ticker(tickable_base* tickable)
 	{
 		_tickables.push_back(tickable);
 	}
 
-	void Ticker::UnregisterTicker(TickableBase* tickable)
+	void ticker::unregister_ticker(tickable_base* tickable)
 	{
 		_tickables.remove(tickable);
 	}

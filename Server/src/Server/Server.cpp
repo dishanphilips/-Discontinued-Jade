@@ -1,23 +1,24 @@
 #pragma once
 
-#include "../../../Core/include/Tick/Ticker.h"
-#include "../../../Core/include/Logger/Logger.h"
-#include "../../../Core/include/Logger/ConsoleAppender.h"
+#include "../../../Core/include/tick/ticker.h"
+#include "../../../Core/include/logger/logger.h"
+#include "../../../Core/include/logger/console_appender.h"
 
 #include "../../include/Server/Server.h"
 
-namespace JadeServer
+namespace jade_server
 {
-	Server::Server() : TickableBase()
+	server::server() : tickable_base()
 	{
-		const auto appender = new JadeCore::ConsoleAppender();
-		JadeCore::Logger::RegisterAppender(appender);
-		JadeCore::Logger::LogInfo("Server Starting", "Startup,Server");
-		JadeCore::Ticker::Start();
+		const auto appender = new jade_core::console_appender();
+		jade_core::logger::register_appender(appender);
+		
+		jade_core::logger::log_info("Server Starting", "Startup,Server");
+		jade_core::ticker::start();
 	}
 		
-	void Server::Tick()
+	void server::tick()
 	{
-		JadeCore::Logger::LogInfo("Server Running...", "Server");
+		jade_core::logger::log_info("Server Tick : ", "Server");
 	}
 }

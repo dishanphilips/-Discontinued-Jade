@@ -3,5 +3,5 @@
 
 int main(int, char* [])
 {
-	JadeServer::Server* server = new JadeServer::Server();
+	jade_server::server* server = new jade_server::server();
 }

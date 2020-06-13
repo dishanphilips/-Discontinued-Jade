@@ -3,16 +3,16 @@
 #ifndef JADE_SERVER_INCLUDE_SERVER_SERVER_H_
 #define JADE_SERVER_INCLUDE_SERVER_SERVER_H_
 
-#include "../../../Core/include/Tick/TickableBase.h"
+#include "../../../Core/include/tick/tickable_base.h"
 
-namespace JadeServer
+namespace jade_server
 {
-	class Server : public JadeCore::TickableBase
+	class server : public jade_core::tickable_base
 	{
 	public:
-		Server();
+		server();
 	protected:
-		void Tick() override;
+		void tick() override;
 	};
 }
 
