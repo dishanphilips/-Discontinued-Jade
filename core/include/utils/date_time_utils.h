@@ -32,7 +32,7 @@ namespace jade_core
 		 * \param format 
 		 * \return 
 		 */
-		static std::string get_current_date_time(const char* format = "%A %B, %d %Y %I:%M%p");
+		static std::string get_current_date_time(const char* format = "%A %B, %d %Y %H:%M:%S");
 	};
 }
 

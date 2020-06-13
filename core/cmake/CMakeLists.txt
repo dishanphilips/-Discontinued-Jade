@@ -22,6 +22,14 @@ target_sources(jade_core
 		${CMAKE_CURRENT_SOURCE_DIR}"/core/include/tick/ticker.h"
 		${CMAKE_CURRENT_SOURCE_DIR}"/core/include/tick/tickable_base.h"
 
+		# Task
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/include/task/task_status.h"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/include/task/task_base.h"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/include/task/task_manager.h"
+
+		# Startup
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/include/startup/startup_task.h"
+
 		# Utils
 		${CMAKE_CURRENT_SOURCE_DIR}"/core/include/utils/string_utils.h"
 		${CMAKE_CURRENT_SOURCE_DIR}"/core/include/utils/array_utils.h"
@@ -35,6 +43,12 @@ target_sources(jade_core
 		# Ticker
 		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/tick/ticker.cpp"
 		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/tick/tickable_base.cpp"
+
+		# Task
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/task/task_manager.cpp"
+
+		# Startup
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/startup/startup_task.cpp"
 
 		# Utils
 		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/utils/string_utils.cpp"

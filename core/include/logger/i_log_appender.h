@@ -3,6 +3,8 @@
 #ifndef JADE_CORE_INCLUDE_LOG_ILOGAPPENDER_H_
 #define JADE_CORE_INCLUDE_LOG_ILOGAPPENDER_H_
 
+#include <string>
+
 namespace jade_core
 {
 	class i_log_appender
