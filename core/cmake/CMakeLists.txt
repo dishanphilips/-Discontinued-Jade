@@ -1,0 +1,46 @@
+﻿# CMakeList.txt : CMake project for Jade, include source and define
+#
+cmake_minimum_required (VERSION 3.8)
+
+#Jade Core
+project ("jade_core")
+
+add_library (jade_core "core/src/Version.cpp")
+
+target_sources(jade_core
+	PUBLIC
+		# Version
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/include/version.h"
+
+		# Logger
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/include/logger/log_level.h"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/include/logger/logger.h"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/include/logger/i_log_appender.h"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/include/logger/console_appender.h"
+
+		# Ticker
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/include/tick/ticker.h"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/include/tick/tickable_base.h"
+
+		# Utils
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/include/utils/string_utils.h"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/include/utils/array_utils.h"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/include/utils/vector_utils.h"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/include/utils/date_time_utils.h"
+	PRIVATE
+		# Logger
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/logger/logger.cpp"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/logger/console_appender.cpp"
+
+		# Ticker
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/tick/ticker.cpp"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/tick/tickable_base.cpp"
+
+		# Utils
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/utils/string_utils.cpp"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/utils/array_utils.cpp"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/utils/vector_utils.cpp"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/utils/date_time_utils.cpp"
+)
+
+# TODO: Add tests and install targets if needed.
