@@ -19,7 +19,7 @@ namespace jade_core
 	private:
 		/**
 		 * \brief List of appenders
-		 */
+		 */ 
 		static std::list<i_log_appender*> _appenders;
 
 	public:

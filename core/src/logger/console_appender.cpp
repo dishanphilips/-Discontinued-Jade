@@ -13,7 +13,21 @@ namespace jade_core
 	void console_appender::append(log_level level, std::string message, std::string tags)
 	{
 		std::vector<std::string> tag_vector = string_utils::split(tags, ',', "[", "]");
-		std::cout << date_time_utils::get_current_date_time() + "\t" + logger::log_level_to_string(level) + 
-			"\t" + vector_utils::to_string(tag_vector, "") + "\t" + message + "\n";
+
+		_logs.push_back(
+			date_time_utils::get_current_date_time() + "\t" + 
+			logger::log_level_to_string(level) + "\t" + 
+			vector_utils::to_string(tag_vector, "") + "\t" + 
+			message + "\n");
+	}
+
+	void console_appender::tick()
+	{
+		for (std::string log : _logs)
+		{
+			std::cout << log;
+		}
+
+		_logs.clear();
 	}
 }
