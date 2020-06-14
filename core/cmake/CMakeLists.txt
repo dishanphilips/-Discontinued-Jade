@@ -45,6 +45,7 @@ target_sources(jade_core
 		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/tick/tickable_base.cpp"
 
 		# Task
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/task/task_base.cpp"
 		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/task/task_manager.cpp"
 
 		# Startup

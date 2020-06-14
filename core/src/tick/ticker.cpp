@@ -37,7 +37,7 @@ namespace jade_core
 		
 		while (_continue)
 		{
-			// Tick all the tick-ables
+			// Tick all the tickables
 			for (tickable_base* tickable : _tickables)
 			{
 				// Invoke the tick asynchronously

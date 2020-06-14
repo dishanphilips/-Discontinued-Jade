@@ -12,14 +12,15 @@ namespace jade_server
 	public:
 		
 		/**
-		 * \brief Initialize the start up task
-		 */
-		startup_task();
-
-		/**
 		 * \brief Execute the server Start Up task
 		 */
 		void execute() override;
+
+		/**
+		 * \brief called when task is complete
+		 * \param status 
+		 */
+		void on_complete(task_status status) override;
 	};
 }
 
