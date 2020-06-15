@@ -13,13 +13,13 @@ Realtime UDP based Game Server and Client SDK using Lidgren and Google Protobuf 
 1. Windows
 
 - Install vcpkg package manager on your system using the official instructions
-- - git clone https://github.com/Microsoft/vcpkg.git
-- - cd vcpkg
-- - ./vcpkg integrate install
+  - git clone https://github.com/Microsoft/vcpkg.git
+  - cd vcpkg
+  - ./vcpkg integrate install
 
 - Install gRPC using vcpkg package manager
-- - x-64
-- - - vcpkg install grpc --triplet x64-windows
+  - x-64
+      - vcpkg install grpc --triplet x64-windows
 
-- - x-86
-- - - vcpkg install grpc
+  - x-86
+      - vcpkg install grpc
