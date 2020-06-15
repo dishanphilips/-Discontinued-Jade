@@ -58,4 +58,10 @@ target_sources(jade_core
 		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/utils/date_time_utils.cpp"
 )
 
+# Include GRPC
+find_package(gRPC CONFIG REQUIRED)
+target_link_libraries(jade_core 
+	PUBLIC gRPC::gpr gRPC::grpc gRPC::grpc++ gRPC::grpc++_alts
+)
+
 # TODO: Add tests and install targets if needed.
