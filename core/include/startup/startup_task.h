@@ -6,22 +6,22 @@
 
 #include "../task/task_base.h"
 
-namespace jade_core
+namespace JadeCore
 {
-	class startup_task : public task_base
+	class StartupTask : public TaskBase
 	{
 	public:
 		
 		/**
 		 * \brief Execute the core startup task
 		 */
-		void execute() override;
+		void Execute() override;
 
 		/**
 		 * \brief Executed on complete
 		 * \param status 
 		 */
-		void on_complete(task_status status) override;
+		void OnComplete(TaskStatus status) override;
 	};
 }
 

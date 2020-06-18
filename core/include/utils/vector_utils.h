@@ -6,9 +6,9 @@
 #include <string>
 #include <vector>
 
-namespace jade_core
+namespace JadeCore
 {
-	static class vector_utils
+	static class VectorUtils
 	{
 	public:
 		
@@ -18,7 +18,7 @@ namespace jade_core
 		 * \param delimiter 
 		 * \return 
 		 */
-		static std::string to_string(std::vector<std::string> vector , std::string delimiter = ",");
+		static std::string ToString(std::vector<std::string> vector , std::string delimiter = ",");
 	};
 }
 

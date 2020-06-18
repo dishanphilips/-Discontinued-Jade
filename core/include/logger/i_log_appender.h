@@ -5,9 +5,9 @@
 
 #include <string>
 
-namespace jade_core
+namespace JadeCore
 {
-	class i_log_appender
+	class ILogAppender
 	{
 	public:
 		
@@ -17,7 +17,7 @@ namespace jade_core
 		 * \param message
 		 * \param tags
 		 */
-		virtual void append(log_level level, std::string message, std::string tags) = 0;
+		virtual void Append(LogLevel level, std::string message, std::string tags) = 0;
 	};
 }
 

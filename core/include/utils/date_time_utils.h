@@ -6,9 +6,9 @@
 #include <stdexcept>
 #include <string>
 
-namespace jade_core
+namespace JadeCore
 {
-	static class date_time_utils
+	static class DateTimeUtils
 	{
 	public:
 
@@ -16,7 +16,7 @@ namespace jade_core
 		 * \brief Get current time 
 		 * \return 
 		 */
-		static std::tm now();
+		static std::tm Now();
 
 		/**
 		 * \brief 
@@ -25,14 +25,14 @@ namespace jade_core
 		 * \param format 
 		 * \return 
 		 */
-		static std::ostream& format(std::ostream& formatted, const tm& time, const char* format);
+		static std::ostream& Format(std::ostream& formatted, const tm& time, const char* format);
 		
 		/**
 		 * \brief Get a string format of the current data time
 		 * \param format 
 		 * \return 
 		 */
-		static std::string get_current_date_time(const char* format = "%A %B, %d %Y %H:%M:%S");
+		static std::string GetCurrentDateTime(const char* format = "%A %B, %d %Y %H:%M:%S");
 	};
 }
 

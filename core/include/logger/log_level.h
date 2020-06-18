@@ -3,18 +3,18 @@
 #ifndef JADE_CORE_INCLUDE_LOG_LOGLEVEL_H_
 #define JADE_CORE_INCLUDE_LOG_LOGLEVEL_H_
 
-namespace jade_core
+namespace JadeCore
 {
 	/**
 	 * \brief Specifies the severity of a log
 	 */
-	enum class log_level
+	enum class LogLevel
 	{
-		trace,
-		debug,
-		info,
-		warning,
-		error
+		Trace,
+		Debug,
+		Info,
+		Warning,
+		Error
 	};
 }
 

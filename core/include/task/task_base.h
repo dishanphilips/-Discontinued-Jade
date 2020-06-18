@@ -7,26 +7,26 @@
 
 #include "task_status.h"
 
-namespace jade_core
+namespace JadeCore
 {
-	class task_base
+	class TaskBase
 	{
 	private:
 		
 		/**
 		 * \brief Status of the task
 		 */
-		task_status _status;
+		TaskStatus status_;
 				
 		/**
 		 * \brief progress of the task
 		 */
-		float _progress;
+		float progress_;
 
 		/**
 		 * \brief The result of the execution
 		 */
-		std::future<void>* _execute_result;
+		std::future<void>* execute_result_;
 		
 	protected :
 
@@ -34,59 +34,59 @@ namespace jade_core
 		 * \brief Set the status of the task
 		 * \param status 
 		 */
-		void set_status(task_status status);
+		void SetStatus(TaskStatus status);
 
 		/**
 		 * \brief Set the progress of the task
 		 * \param progress 
 		 */
-		void set_progress(float progress);
+		void SetProgress(float progress);
 		
 	public:
 		
 		/**
 		 * \brief Initialize the task
 		 */
-		task_base();
+		TaskBase();
 
 		/**
 		 * \brief status of the task
 		 */
-		task_status get_status() const;
+		TaskStatus GetStatus() const;
 
 		/**
 		 * \brief Progress of the task
 		 */
-		float get_progress();
+		float GetProgress();
 
 		/**
 		 * \brief return the execute result
 		 * \return 
 		 */
-		std::future<void>* get_execute_result() const;
+		std::future<void>* GetExecuteResult() const;
 		
 		/**
 		 * \brief Set the execute result
 		 * \param result 
 		 */
-		void set_execute_result(std::future<void>* result);
+		void SetExecuteResult(std::future<void>* result);
 		
 		/**
 		 * \brief Execute a task
 		 */
-		virtual void execute();
+		virtual void Execute();
 
 		/**
 		 * \brief Finish the execution of the task
 		 * \param status of the completed task 
 		 */
-		void finish(task_status status = task_status::success);
+		void Finish(TaskStatus status = TaskStatus::Success);
 
 		/**
 		 * \brief Callback made when the task completes
 		 * \param status of the completed task 
 		 */
-		virtual void on_complete(task_status status) = 0;
+		virtual void OnComplete(TaskStatus status) = 0;
 	};
 }
 

@@ -1,0 +1,17 @@
+// Jade Server Sevice Definition
+
+syntax = "proto3";
+
+package JadeCore;
+
+service RpcBase {
+	rpc Info (InfoRequest) returns (InfoResponse) {}
+}
+
+message InfoRequest {
+	string message = 1;
+}
+
+message InfoResponse {
+	string message = 1;
+}

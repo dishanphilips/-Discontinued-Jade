@@ -2,9 +2,9 @@
 
 #include "../../include/utils/vector_utils.h"
 
-namespace jade_core
+namespace JadeCore
 {
-	std::string vector_utils::to_string(std::vector<std::string> vector, const std::string delimiter)
+	std::string VectorUtils::ToString(std::vector<std::string> vector, const std::string delimiter)
 	{
 		std::string vector_string = "";
 

@@ -1,8 +1,8 @@
 #include "../../include/Utils/string_utils.h"
 
-namespace jade_core
+namespace JadeCore
 {
-	std::vector<std::string> string_utils::split(std::string string, char delimiter, std::string prefix, std::string suffix)
+	std::vector<std::string> StringUtils::Split(std::string string, char delimiter, std::string prefix, std::string suffix)
 	{
 		std::vector<std::string> split;
 		std::string current_split;

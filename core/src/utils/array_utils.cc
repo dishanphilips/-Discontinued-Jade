@@ -2,9 +2,9 @@
 
 #include "../../include/utils/array_utils.h"
 
-namespace jade_core
+namespace JadeCore
 {
-	std::string array_utils::to_string(std::string array[], const std::string& delimiter)
+	std::string ArrayUtils::to_string(std::string array[], const std::string& delimiter)
 	{
 		std::string array_string = "";
 

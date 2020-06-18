@@ -3,11 +3,11 @@
 cmake_minimum_required (VERSION 3.8)
 
 #Jade Core
-project ("jade_core")
+project ("JadeCore")
 
-add_library (jade_core "core/src/Version.cpp")
+add_library (JadeCore "core/src/version.cc")
 
-target_sources(jade_core
+target_sources(JadeCore
 	PUBLIC
 		# Version
 		${CMAKE_CURRENT_SOURCE_DIR}"/core/include/version.h"
@@ -35,33 +35,37 @@ target_sources(jade_core
 		${CMAKE_CURRENT_SOURCE_DIR}"/core/include/utils/array_utils.h"
 		${CMAKE_CURRENT_SOURCE_DIR}"/core/include/utils/vector_utils.h"
 		${CMAKE_CURRENT_SOURCE_DIR}"/core/include/utils/date_time_utils.h"
+
+		# Proto
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/gen/server.pb.h"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/gen/server.grpc.pb.h"
+
 	PRIVATE
 		# Logger
-		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/logger/logger.cpp"
-		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/logger/console_appender.cpp"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/logger/logger.cc"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/logger/console_appender.cc"
 
 		# Ticker
-		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/tick/ticker.cpp"
-		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/tick/tickable_base.cpp"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/tick/ticker.cc"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/tick/tickable_base.cc"
 
 		# Task
-		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/task/task_base.cpp"
-		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/task/task_manager.cpp"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/task/task_base.cc"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/task/task_manager.cc"
 
 		# Startup
-		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/startup/startup_task.cpp"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/startup/startup_task.cc"
 
 		# Utils
-		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/utils/string_utils.cpp"
-		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/utils/array_utils.cpp"
-		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/utils/vector_utils.cpp"
-		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/utils/date_time_utils.cpp"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/utils/string_utils.cc"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/utils/array_utils.cc"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/utils/vector_utils.cc"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/utils/date_time_utils.cc"
+
+		# Proto
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/gen/server.pb.cc"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/gen/server.grpc.pb.cc"
 )
 
-# Include GRPC
 find_package(gRPC CONFIG REQUIRED)
-target_link_libraries(jade_core 
-	PUBLIC gRPC::gpr gRPC::grpc gRPC::grpc++ gRPC::grpc++_alts
-)
-
-# TODO: Add tests and install targets if needed.
+target_link_libraries(JadeCore PUBLIC gRPC::gpr gRPC::grpc gRPC::grpc++ gRPC::grpc++_alts c-ares::cares)

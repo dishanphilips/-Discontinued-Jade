@@ -8,20 +8,20 @@
 #include "../../include/utils/string_utils.h"
 #include "../../include/utils/vector_utils.h"
 
-namespace jade_core
+namespace JadeCore
 {
-	void console_appender::append(log_level level, std::string message, std::string tags)
+	void ConsoleAppender::Append(LogLevel level, std::string message, std::string tags)
 	{
-		std::vector<std::string> tag_vector = string_utils::split(tags, ',', "[", "]");
+		std::vector<std::string> tag_vector = StringUtils::Split(tags, ',', "[", "]");
 
 		_logs.push_back(
-			date_time_utils::get_current_date_time() + "\t" + 
-			logger::log_level_to_string(level) + "\t" + 
-			vector_utils::to_string(tag_vector, "") + "\t" + 
+			DateTimeUtils::GetCurrentDateTime() + "\t" + 
+			Logger::LogLevelToString(level) + "\t" + 
+			VectorUtils::ToString(tag_vector, "") + "\t" + 
 			message + "\n");
 	}
 
-	void console_appender::tick()
+	void ConsoleAppender::Tick()
 	{
 		for (std::string log : _logs)
 		{

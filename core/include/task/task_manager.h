@@ -7,16 +7,16 @@
 
 #include "task_base.h"
 
-namespace jade_core
+namespace JadeCore
 {
-	class task_manager : public tickable_base
+	class TaskManager : public TickableBase
 	{
 	private:
 		
 		/**
 		 * \brief A list of all the current tasks that are running
 		 */
-		std::vector<task_base*> _tasks;
+		std::vector<TaskBase*> tasks_;
 		
 	public:
 
@@ -24,12 +24,12 @@ namespace jade_core
 		 * \brief Runs a given task by running it
 		 * \param task 
 		 */
-		void run(task_base* task);
+		void Run(TaskBase* task);
 
 		/**
 		 * \brief Tick the task manager
 		 */
-		void tick() override;
+		void Tick() override;
 	};
 }
 

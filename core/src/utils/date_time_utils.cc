@@ -8,15 +8,15 @@
 
 #include "../../include/Utils/date_time_utils.h"
 
-namespace jade_core
+namespace JadeCore
 {
-	std::tm date_time_utils::now()
+	std::tm DateTimeUtils::Now()
 	{
 		time_t now = time(0);
 		return *localtime(&now);
 	}
 
-	std::ostream& date_time_utils::format(std::ostream& formatted, const std::tm& time, const char* format)
+	std::ostream& DateTimeUtils::Format(std::ostream& formatted, const std::tm& time, const char* format)
 	{
 		const std::time_put<char>& dateWriter = std::use_facet<std::time_put<char> >(formatted.getloc());
 		int length = strlen(format);
@@ -26,10 +26,10 @@ namespace jade_core
 		return formatted;
 	}
 
-	std::string date_time_utils::get_current_date_time(const char * date_time_format)
+	std::string DateTimeUtils::GetCurrentDateTime(const char * date_time_format)
 	{
 		std::stringstream formatted;
-		format(formatted, now(), date_time_format);
+		Format(formatted, Now(), date_time_format);
 		return formatted.str();
 	}
 }

@@ -3,11 +3,11 @@
 cmake_minimum_required (VERSION 3.8)
 
 #Jade ClientSDK
-project ("jade_client_sdk")
+project ("JadeClientSdk")
 
-add_library(jade_client_sdk "client_sdk/src/version.cpp")
+add_library(JadeClientSdk "client_sdk/src/version.cc")
 
-target_sources(jade_client_sdk
+target_sources(JadeClientSdk
 	PUBLIC
 		# Version
 		${CMAKE_CURRENT_SOURCE_DIR}"/client_sdk/include/version.h"
@@ -15,4 +15,4 @@ target_sources(jade_client_sdk
 )
 
 # Link Jade Core
-target_link_libraries(jade_client_sdk jade_core)
+target_link_libraries(JadeClientSdk JadeCore)

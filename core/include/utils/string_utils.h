@@ -6,9 +6,9 @@
 #include <string>
 #include <vector>
 
-namespace jade_core
+namespace JadeCore
 {
-	static class string_utils
+	static class StringUtils
 	{
 	public:
 
@@ -20,7 +20,7 @@ namespace jade_core
 		 * \param suffix
 		 * \return
 		 */
-		static std::vector<std::string> split(std::string string, char delimiter, std::string prefix = "", std::string suffix = "");
+		static std::vector<std::string> Split(std::string string, char delimiter, std::string prefix = "", std::string suffix = "");
 	};
 
 }

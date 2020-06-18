@@ -5,9 +5,9 @@
 
 #include <string>
 
-namespace jade_core
+namespace JadeCore
 {
-	static class array_utils
+	static class ArrayUtils
 	{
 	public:
 		

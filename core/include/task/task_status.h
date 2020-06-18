@@ -3,12 +3,12 @@
 #ifndef JADE_CORE_INCLUDE_TASK_TASKSTATUS_H_
 #define JADE_CORE_INCLUDE_TASK_TASKSTATUS_H_
 
-enum class task_status
+enum class TaskStatus
 {
-	initialized,
-	in_progress,
-	failure,
-	success,
+	Initialized,
+	InProgress,
+	Failure,
+	Success,
 };
 
 #endif

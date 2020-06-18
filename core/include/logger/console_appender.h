@@ -9,9 +9,9 @@
 #include "i_log_appender.h"
 #include "../tick/tickable_base.h"
 
-namespace jade_core
+namespace JadeCore
 {
-	class console_appender : public i_log_appender, public tickable_base
+	class ConsoleAppender : public ILogAppender, public TickableBase
 	{
 	private:
 		
@@ -27,12 +27,12 @@ namespace jade_core
 		 * \param message 
 		 * \param tags 
 		 */
-		void append(log_level level, std::string message, std::string tags) override;
+		void Append(LogLevel level, std::string message, std::string tags) override;
 
 		/**
 		 * \brief 
 		 */
-		void tick() override;
+		void Tick() override;
 	};
 }
 
