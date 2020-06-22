@@ -1,33 +1,22 @@
+#include "../../../core/include/utils/date_time_utils.h"
 
 #include "../../include/handler/info_handler.h"
 
 namespace JadeServer
 {
-	InfoHandler::InfoHandler(JadeCore::RpcBase::AsyncService* service, grpc_impl::ServerCompletionQueue* completion_queue) :
-		RpcHandlerBase(service, completion_queue), responder_(&context_)
+	InfoHandler::InfoHandler(JadeCore::RpcBase::AsyncService* service, grpc_impl::ServerCompletionQueue* completion_queue):
+		RpcHandlerBaseT<JadeCore::InfoRequest, JadeCore::InfoResponse>(service, completion_queue)
 	{
-        this->Respond();
 	}
 
-	void InfoHandler::Respond()
+	RpcHandlerBase* InfoHandler::Spawn()
 	{
-        if (status_ == Create) 
-        {
-            status_ = Process;
-            service_->RequestInfo(&context_, &request_, &responder_, completion_queue_, completion_queue_, this);
-        }
-        else if (status_ == Process) 
-        {
-            new InfoHandler(service_, completion_queue_);
-            std::string prefix("Hello ");
-            response_.set_message(prefix + request_.message());
-            status_ = Finish;
-            responder_.Finish(response_, grpc::Status::OK, this);
-        }
-        else 
-        {
-            GPR_ASSERT(status_ == Finish);
-            delete this;
-        }
+		return new InfoHandler(service_, completion_queue_);
+	}
+
+	void InfoHandler::Execute()
+	{
+		response_.set_message("Hello : " + request_.message() + 
+			". Server Time Is : " + JadeCore::DateTimeUtils::GetCurrentDateTime() + ".");
 	}
 }

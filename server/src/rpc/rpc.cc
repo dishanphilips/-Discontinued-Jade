@@ -40,23 +40,30 @@ namespace JadeServer
 
 	void Rpc::Handle()
 	{
-		InfoHandler(&service_, completion_queue_.get());
+		InfoHandler* info = new InfoHandler(&service_, completion_queue_.get());
+		info->Create();
 		void* tag;
 		bool ok;
 		
 		while (completion_queue_->Next(&tag, &ok))
 		{
 			GPR_ASSERT(ok);
-			static_cast<RpcHandlerBase*>(tag)->Respond();
-		}
-	}
 
-	grpc::Status Rpc::Info(::grpc::ServerContext* context, const JadeCore::InfoRequest* request, JadeCore::InfoResponse* response)
-	{
-		// Set the info response
-		response->set_message("Hello : " + request->message() + ". Server Time Is : " +
-			JadeCore::DateTimeUtils::GetCurrentDateTime() + ".");
-		
-		return grpc::Status::OK;
+			// Create the Rpc Tag
+			RpcHandlerBase* rpcTag = static_cast<RpcHandlerBase*>(tag);
+
+			if(rpcTag->GetStatus() == RpcHandlerStatus::Create)
+			{
+				rpcTag->Create();
+			}
+			else if(rpcTag->GetStatus() == RpcHandlerStatus::Process)
+			{
+				rpcTag->Process();
+			}
+			else if (rpcTag->GetStatus() == RpcHandlerStatus::Finish)
+			{
+				rpcTag->Dispose();
+			}
+		}
 	}
 }

@@ -19,9 +19,10 @@ target_sources(JadeServer
 		${CMAKE_CURRENT_SOURCE_DIR}"/server/include/startup/startup_task.h"
 
 		# RPC
-		${CMAKE_CURRENT_SOURCE_DIR}"/server/include/rpc/rpc.h"
-		${CMAKE_CURRENT_SOURCE_DIR}"/server/include/rpc/rpc_handler_base.h"
 		${CMAKE_CURRENT_SOURCE_DIR}"/server/include/rpc/rpc_handler_status.h"
+		${CMAKE_CURRENT_SOURCE_DIR}"/server/include/rpc/rpc_handler_base.h"
+		${CMAKE_CURRENT_SOURCE_DIR}"/server/include/rpc/rpc_handler_base_t.h"
+		${CMAKE_CURRENT_SOURCE_DIR}"/server/include/rpc/rpc.h"
 
 		# RPC Handlers
 		${CMAKE_CURRENT_SOURCE_DIR}"/server/include/handler/info_handler.h"
@@ -40,8 +41,8 @@ target_sources(JadeServer
 		${CMAKE_CURRENT_SOURCE_DIR}"/server/src/startup/startup_task.cc"
 
 		# RPC
-		${CMAKE_CURRENT_SOURCE_DIR}"/server/src/rpc/rpc.cc"
 		${CMAKE_CURRENT_SOURCE_DIR}"/server/src/rpc/rpc_handler_base.cc"
+		${CMAKE_CURRENT_SOURCE_DIR}"/server/src/rpc/rpc.cc"
 
 		# RPC Handlers
 		${CMAKE_CURRENT_SOURCE_DIR}"/server/src/handler/info_handler.cc"

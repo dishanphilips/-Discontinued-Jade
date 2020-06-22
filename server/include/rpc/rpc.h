@@ -42,15 +42,6 @@ namespace JadeServer
 		 * \brief Run the Rpc server
 		 */
 		void Listen();
-
-		/**
-		 * \brief Return info about the server
-		 * \param context 
-		 * \param request 
-		 * \param response 
-		 * \return 
-		 */
-		grpc::Status Info(::grpc::ServerContext* context, const JadeCore::InfoRequest* request, JadeCore::InfoResponse* response) override;
 	};
 }
 

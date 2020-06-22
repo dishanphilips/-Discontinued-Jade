@@ -9,7 +9,7 @@
 #include "rpc_handler_status.h"
 
 namespace JadeServer
-{
+{	
 	class RpcHandlerBase
 	{
 	protected:
@@ -32,6 +32,31 @@ namespace JadeServer
 		 * \brief The status of the request
 		 */
 		RpcHandlerStatus status_;
+
+		/**
+		 * \brief Specify if the task was successful 
+		 */
+		bool ok_ = true;
+		
+		/**
+		 * \brief Spawn a new RPC handler
+		 */
+		virtual RpcHandlerBase* Spawn() = 0;
+
+		/**
+		 * \brief Initialize a rpc handler
+		 */
+		virtual void Initialize() = 0;
+
+		/**
+		 * \brief Execute the rpc call
+		 */
+		virtual void Execute() = 0;
+
+		/**
+		 * \brief Finalize the rpc handler
+		 */
+		virtual void Finalize() = 0;
 		
 	public:
 		
@@ -43,9 +68,26 @@ namespace JadeServer
 		RpcHandlerBase(JadeCore::RpcBase::AsyncService* service, grpc_impl::ServerCompletionQueue* completion_queue);
 
 		/**
+		 * \brief Get the current status of the rpc handler
+		 * \return 
+		 */
+		RpcHandlerStatus GetStatus();
+
+		/**
+		 * \brief Create a new handler
+		 * \return
+		 */
+		void Create();
+
+		/**
 		 * \brief Process and respond to a rpc request
 		 */
-		virtual void Respond();
+		void Process();
+		
+		/**
+		 * \brief Dispose a handler
+		 */
+		void Dispose();
 	};
 }
 

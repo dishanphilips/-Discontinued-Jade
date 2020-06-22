@@ -2,26 +2,23 @@
 
 #ifndef JADE_SERVER_INCLUDE_HANDLER_INFO_HANDLER_H_
 #define JADE_SERVER_INCLUDE_HANDLER_INFO_HANDLER_H_
+
 #include "../rpc/rpc_handler_base.h"
+#include "../rpc/rpc_handler_base_t.h"
 
 namespace JadeServer
 {
-	class InfoHandler : public RpcHandlerBase
+	class InfoHandler final : public RpcHandlerBaseT<JadeCore::InfoRequest, JadeCore::InfoResponse>
 	{
-	private:
-		JadeCore::InfoRequest request_;
+	protected:
 
-		JadeCore::InfoResponse response_;
+		RpcHandlerBase* Spawn() override;
 
-		/**
-		 * \brief The responder
-		 */
-		grpc_impl::ServerAsyncResponseWriter<JadeCore::InfoResponse> responder_;
-
-	public:
-		InfoHandler(JadeCore::RpcBase::AsyncService* service, grpc_impl::ServerCompletionQueue* completion_queue);
+		void Execute() override;
 		
-		void Respond() override;
+	public:
+		
+		InfoHandler::InfoHandler(JadeCore::RpcBase::AsyncService* service, grpc_impl::ServerCompletionQueue* completion_queue);
 	};
 }
 
