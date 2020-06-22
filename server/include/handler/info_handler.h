@@ -15,6 +15,11 @@ namespace JadeServer
 		RpcHandlerBase* Spawn() override;
 
 		void Execute() override;
+
+		GrpcService GetService() override
+		{
+			return &JadeCore::RpcBase::AsyncService::RequestInfo;
+		};
 		
 	public:
 		

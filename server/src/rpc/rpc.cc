@@ -4,9 +4,9 @@
 #include "../../../core/include/utils/date_time_utils.h"
 
 #include "../../include/rpc/rpc.h"
-
-#include "../../include/handler/info_handler.h"
 #include "../../include/rpc/rpc_handler_base.h"
+#include "../../include/rpc/rpc_handler_registry.h"
+#include "../../include/handler/info_handler.h"
 
 namespace JadeServer
 {
@@ -34,14 +34,16 @@ namespace JadeServer
 		grpc_server_ = std::unique_ptr<Server>(builder.BuildAndStart());
 		JadeCore::Logger::LogInfo("Server Listening On : " + server_address, "StartUp");
 
+		// Create the handler registry
+		RpcHandlerRegistry::Register(&service_, completion_queue_.get());
+		RpcHandlerRegistry::Create();
+
 		// Handle RPCs
 		this->Handle();
 	}
 
 	void Rpc::Handle()
 	{
-		InfoHandler* info = new InfoHandler(&service_, completion_queue_.get());
-		info->Create();
 		void* tag;
 		bool ok;
 		

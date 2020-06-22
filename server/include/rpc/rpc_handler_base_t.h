@@ -15,6 +15,17 @@ namespace JadeServer
 	{
 	protected:
 
+		// Define a type def for the GRPC function
+		typedef void (JadeCore::RpcBase::AsyncService::*GrpcService)
+		(
+			grpc::ServerContext*, 
+			TRpcRequest*, 
+			grpc::ServerAsyncResponseWriter<TRpcResponse>* ,
+			grpc::CompletionQueue*, 
+			grpc::ServerCompletionQueue*, 
+			void*
+		);
+
 		/**
 		 * \brief The request
 		 */
@@ -29,13 +40,18 @@ namespace JadeServer
 		 * \brief The responder
 		 */
 		grpc_impl::ServerAsyncResponseWriter<TRpcResponse> responder_;
-				
+			
+		/**
+		 * \brief Get the Grpc Service
+		 */
+		virtual GrpcService GetService() = 0;
+
 		/**
 		 * \brief Initialize the handler
 		 */
 		void Initialize() override
 		{
-			service_->RequestInfo(&context_, &request_, &responder_, completion_queue_, completion_queue_, this);
+			(service_->*GetService())(&context_, &request_, &responder_, completion_queue_, completion_queue_, this);
 		}
 
 		/**

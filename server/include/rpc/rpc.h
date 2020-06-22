@@ -4,6 +4,7 @@
 #define JADE_SERVER_INCLUDE_SERVER_SERVER_RPC_H_
 
 #include <memory>
+
 #include <grpcpp/server.h>
 
 #include "../../../core/gen/server.grpc.pb.h"

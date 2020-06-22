@@ -15,11 +15,17 @@ Realtime UDP based Game Server and Client SDK using Lidgren and Google Protobuf 
 - Install vcpkg package manager on your system using the official instructions
   - git clone https://github.com/Microsoft/vcpkg.git
   - cd vcpkg
-  - ./vcpkg integrate install
+  - bootstrap-vcpkg.bat
+  - .\vcpkg.exe integrate install
 
 - Install gRPC using vcpkg package manager
   - x-64
-      - vcpkg install grpc --triplet x64-windows
+      - .\vcpkg.exe install grpc --triplet x64-windows
 
   - x-86
-      - vcpkg install grpc
+      - .\vcpkg.exe install grpc
+
+- Fixing Please compile grpc with _WIN32_WINNT of at least 0x600
+    - Add this line - #include <SDKDDKVer.h> in port_platform.h right after
+    - /* Get windows.h included everywhere (we need it) */
+    - #if defined(_WIN64) || defined(WIN64) || defined(_WIN32) || defined(WIN32)
