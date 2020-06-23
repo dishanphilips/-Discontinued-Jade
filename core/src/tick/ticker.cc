@@ -5,7 +5,7 @@
 #include <list>
 #include <chrono>
 
-#include "../../include/Tick/Ticker.h"
+#include "../tick/ticker.h"
 
 namespace JadeCore
 {

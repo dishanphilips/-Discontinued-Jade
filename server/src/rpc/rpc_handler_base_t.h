@@ -3,7 +3,7 @@
 #ifndef JADE_SERVER_INCLUDE_RPC_RPC_HANDLER_BASE_T_H_
 #define JADE_SERVER_INCLUDE_RPC_RPC_HANDLER_BASE_T_H_
 
-#include "../../../core/gen/server.grpc.pb.h"
+#include "../../../core/include/jadecore.h"
 #include "rpc_handler_base.h"
 
 namespace JadeServer

@@ -7,7 +7,7 @@
 
 #include <grpcpp/server.h>
 
-#include "../../../core/gen/server.grpc.pb.h"
+#include "../../../core/include/jadecore.h"
 
 using grpc::Server;
 

@@ -6,7 +6,6 @@
 #include <future>
 #include <list>
 
-
 #include "tickable_base.h"
 
 namespace JadeCore

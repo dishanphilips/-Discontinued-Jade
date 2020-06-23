@@ -1,12 +1,13 @@
 #include <string>
 #include <iostream>
+#include <vector>
 
-#include "../../include/logger/console_appender.h"
-#include "../../include/logger/logger.h"
-#include "../../include/logger/log_level.h"
-#include "../../include/utils/date_time_utils.h"
-#include "../../include/utils/string_utils.h"
-#include "../../include/utils/vector_utils.h"
+#include "../logger/logger.h"
+#include "../utils/date_time_utils.h"
+#include "../utils/vector_utils.h"
+#include "../utils/string_utils.h"
+
+#include "console_appender.h"
 
 namespace JadeCore
 {

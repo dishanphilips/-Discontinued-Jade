@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../include/task/task_base.h"
+#include "task_base.h"
 
 namespace JadeCore
 {

@@ -2,7 +2,7 @@
 
 #include <future>
 
-#include "../../include/task/task_manager.h"
+#include "../task/task_manager.h"
 
 namespace JadeCore
 {

@@ -1,9 +1,9 @@
 #pragma once
 
-#include "../../include/logger/console_appender.h"
-#include "../../include/logger/Logger.h"
+#include "../logger/console_appender.h"
+#include "../logger/Logger.h"
 
-#include "../../include/startup/startup_task.h"
+#include "../startup/startup_task.h"
 
 namespace JadeCore
 {

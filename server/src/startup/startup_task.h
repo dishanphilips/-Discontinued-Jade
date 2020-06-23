@@ -3,8 +3,10 @@
 #ifndef JADE_SERVER_INCLUDE_STARTUP_STARTUP_H_
 #define JADE_SERVER_INCLUDE_STARTUP_STARTUP_H_
 
-#include "../../../core/include/startup/startup_task.h"
+#include "../../../core/include/jadecore.h"
+
 #include "../rpc/rpc.h"
+#include "startup_task.h"
 
 namespace JadeServer
 {

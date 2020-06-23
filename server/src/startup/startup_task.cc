@@ -1,9 +1,8 @@
 #pragma once
 
-#include "../../../core/include/logger/Logger.h"
+#include "../../../core/include/jadecore.h"
 
-#include "../../include/startup/startup_task.h"
-#include "../../include/rpc/rpc.h"
+#include "startup_task.h"
 
 using JadeServer::StartupTask;
 

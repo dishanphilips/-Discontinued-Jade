@@ -1,6 +1,0 @@
-#pragma once
-
-#ifndef JADE_SERVER_INCLUDE_VERSION_H_
-#define JADE_SERVER_INCLUDE_VERSION_H_
-
-#endif

@@ -1,6 +1,6 @@
 #include <string>
 
-#include "../../include/utils/array_utils.h"
+#include "array_utils.h"
 
 namespace JadeCore
 {

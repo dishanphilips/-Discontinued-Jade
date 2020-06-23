@@ -1,6 +1,6 @@
 #include <string>
 
-#include "../../include/utils/vector_utils.h"
+#include "vector_utils.h"
 
 namespace JadeCore
 {

@@ -1,12 +1,9 @@
 #include <grpcpp/server_builder.h>
 
-#include "../../../core/include/logger/logger.h"
-#include "../../../core/include/utils/date_time_utils.h"
+#include "../../../core/include/jadecore.h"
 
-#include "../../include/rpc/rpc.h"
-#include "../../include/rpc/rpc_handler_base.h"
-#include "../../include/rpc/rpc_handler_registry.h"
-#include "../../include/handler/info_handler.h"
+#include "rpc_handler_registry.h"
+#include "rpc.h"
 
 namespace JadeServer
 {

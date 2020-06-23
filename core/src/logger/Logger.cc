@@ -1,6 +1,6 @@
 #include <string>
 
-#include "../../include/logger/Logger.h"
+#include "logger.h"
 
 namespace JadeCore
 {

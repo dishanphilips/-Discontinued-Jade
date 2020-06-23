@@ -2,9 +2,9 @@
 
 #include <grpcpp/server_builder.h>
 
-#include "../../../core/include/tick/ticker.h"
+#include "../../../core/include/jadecore.h"
 
-#include "../../include/server/server.h"
+#include "server.h"
 
 namespace JadeServer
 {

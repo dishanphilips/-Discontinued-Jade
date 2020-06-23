@@ -1,5 +1,6 @@
-#include "../../include/rpc/rpc_handler_registry.h"
-#include "../../include/handler/info_handler.h"
+
+#include "../handler/info_handler.h"
+#include "rpc_handler_registry.h"
 
 namespace JadeServer 
 {
