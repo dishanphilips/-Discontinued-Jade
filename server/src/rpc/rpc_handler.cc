@@ -6,7 +6,10 @@
 namespace JadeServer
 {
 	RpcHandler::RpcHandler(JadeCore::RpcBase::AsyncService* service, grpc_impl::ServerCompletionQueue* completion_queue) :
-		service_(service), completion_queue_(completion_queue), status_(RpcHandlerStatus::Create), command_responder_(&context_)
+		service_(service),
+		completion_queue_(completion_queue),
+		command_responder_(&context_),
+		status_(RpcHandlerStatus::Create)
 	{
 	}
 
@@ -21,7 +24,7 @@ namespace JadeServer
 		status_ = RpcHandlerStatus::Process;
 
 		// Initialize the handler
-		service_->RequestHandle(&context_, &command_request_, &command_responder_, completion_queue_, completion_queue_, this);
+		service_->RequestHandle(&context_, &command_responder_, completion_queue_, completion_queue_, this);
 	}
 
 	void RpcHandler::Process()
@@ -37,11 +40,11 @@ namespace JadeServer
 		// Finalize the task
 		if (ok_)
 		{
-			command_responder_.Finish(command_response_, grpc::Status::OK, this);
+			command_responder_.WriteAndFinish(command_response_, {}, grpc::Status::OK, this);
 		}
 		else
 		{
-			command_responder_.Finish(command_response_, grpc::Status::CANCELLED, this);
+			command_responder_.WriteAndFinish(command_response_, {}, grpc::Status::CANCELLED, this);
 		}
 		
 		// Mark it as finished

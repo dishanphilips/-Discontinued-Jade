@@ -140,9 +140,9 @@ const char descriptor_table_protodef_server_2eproto[] PROTOBUF_SECTION_VARIABLE(
   "\n\017CommandResponse\022\021\n\toperation\030\001 \001(\005\022\020\n\010"
   "response\030\003 \001(\014\"\036\n\013InfoRequest\022\017\n\007message"
   "\030\001 \001(\t\"\037\n\014InfoResponse\022\017\n\007message\030\001 \001(\t2"
-  "J\n\007RpcBase\022\?\n\006Handle\022\030.JadeCore.CommandR"
-  "equest\032\031.JadeCore.CommandResponse\"\000b\006pro"
-  "to3"
+  "N\n\007RpcBase\022C\n\006Handle\022\030.JadeCore.CommandR"
+  "equest\032\031.JadeCore.CommandResponse\"\000(\0010\001b"
+  "\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_server_2eproto_deps[1] = {
 };
@@ -154,7 +154,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_ser
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_server_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_server_2eproto = {
-  false, false, descriptor_table_protodef_server_2eproto, "server.proto", 283,
+  false, false, descriptor_table_protodef_server_2eproto, "server.proto", 287,
   &descriptor_table_server_2eproto_once, descriptor_table_server_2eproto_sccs, descriptor_table_server_2eproto_deps, 4, 0,
   schemas, file_default_instances, TableStruct_server_2eproto::offsets,
   file_level_metadata_server_2eproto, 4, file_level_enum_descriptors_server_2eproto, file_level_service_descriptors_server_2eproto,

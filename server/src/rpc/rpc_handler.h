@@ -41,7 +41,7 @@ namespace JadeServer
 		/**
 		 * \brief The responder
 		 */
-		grpc_impl::ServerAsyncResponseWriter<JadeCore::CommandResponse> command_responder_;
+		grpc_impl::ServerAsyncReaderWriter<JadeCore::CommandResponse, JadeCore::CommandRequest> command_responder_;
 
 		
 		/**

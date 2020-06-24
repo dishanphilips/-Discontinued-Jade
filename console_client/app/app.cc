@@ -38,8 +38,11 @@ public:
         ClientContext context;
 
         // The actual RPC.
-        Status status = stub_->Handle(&context, request, &reply);
-
+        auto handler = stub_->Handle(&context);
+        handler->Write(request);
+        handler->Read(&reply);
+        auto status = handler->Finish();
+    	
         // Act upon its status.
         if (status.ok()) {
             return reply.response();

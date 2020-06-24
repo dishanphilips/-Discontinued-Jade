@@ -5,7 +5,7 @@ syntax = "proto3";
 package JadeCore;
 
 service RpcBase {
-	rpc Handle (CommandRequest) returns (CommandResponse) {}
+	rpc Handle (stream CommandRequest) returns (stream CommandResponse) {}
 }
 
 message CommandRequest {
