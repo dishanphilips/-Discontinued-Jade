@@ -32,6 +32,11 @@
 #include "../src/utils/string_utils.h"
 #include "../src/utils/vector_utils.h"
 
+/****************************** Command ******************************/
+
+#include "../src/command/i_command_handler.h"
+#include "../src/command/command_executor.h"
+
 /****************************** Gen ******************************/
 #include "../gen/server.pb.h"
 #include "../gen/server.grpc.pb.h"

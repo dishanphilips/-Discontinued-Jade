@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef JADE_SERVER_INCLUDE_STARTUP_STARTUP_H_
-#define JADE_SERVER_INCLUDE_STARTUP_STARTUP_H_
+#ifndef JADE_SERVER_INCLUDE_STARTUP_STARTUP_TASK_H_
+#define JADE_SERVER_INCLUDE_STARTUP_STARTUP_TASK_H_
 
 #include "../../../core/include/jadecore.h"
 
@@ -23,6 +23,7 @@ namespace JadeServer
 		 * \brief The RPC thread
 		 */
 		std::thread* rpc_thread_;
+		
 	public:
 		
 		/**

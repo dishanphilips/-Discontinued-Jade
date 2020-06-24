@@ -12,8 +12,8 @@
 using grpc::Channel;
 using grpc::ClientContext;
 using grpc::Status;
-using JadeCore::InfoRequest;
-using JadeCore::InfoResponse;
+using JadeCore::CommandRequest;
+using JadeCore::CommandResponse;
 using JadeCore::RpcBase;
 
 class GreeterClient {
@@ -21,23 +21,28 @@ public:
     GreeterClient(std::shared_ptr<Channel> channel) : stub_(RpcBase::NewStub(channel)) {}
 
     std::string GetInfo(const std::string& message) {
-        // Data we are sending to the server.
-        InfoRequest request;
-        request.set_message(message);
+
+        JadeCore::InfoRequest* info = new JadeCore::InfoRequest();
+        info->set_message("jiji");
+    	
+    	// Data we are sending to the server.
+        CommandRequest request;
+        request.set_operation(1);
+        request.set_request(info->SerializeAsString());
 
         // Container for the data we expect from the server.
-        InfoResponse reply;
+        CommandResponse reply;
 
         // Context for the client. It could be used to convey extra information to
         // the server and/or tweak certain RPC behaviors.
         ClientContext context;
 
         // The actual RPC.
-        Status status = stub_->Info(&context, request, &reply);
+        Status status = stub_->Handle(&context, request, &reply);
 
         // Act upon its status.
         if (status.ok()) {
-            return reply.message();
+            return reply.response();
         }
         else {
             std::cout << status.error_code() << ": " << status.error_message()

@@ -3,6 +3,7 @@
 #include "../../../core/include/jadecore.h"
 
 #include "startup_task.h"
+#include "command_startup.h"
 
 using JadeServer::StartupTask;
 
@@ -13,6 +14,10 @@ namespace JadeServer
 		// 0. Execute base startup
 		JadeCore::StartupTask::Execute();
 
+		// 1. Set up the commands
+		CommandStartup* command_startup = new CommandStartup();
+		command_startup->Execute();
+		
 		// 99. Finally listen to the rpc service
 		JadeCore::Logger::LogInfo("Creating Rpc Listener.", "ServerStartup");
 

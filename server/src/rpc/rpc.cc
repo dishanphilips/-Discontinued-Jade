@@ -2,8 +2,10 @@
 
 #include "../../../core/include/jadecore.h"
 
-#include "rpc_handler_registry.h"
+#include "rpc_handler_status.h"
+#include "rpc_handler.h"
 #include "rpc.h"
+
 
 namespace JadeServer
 {
@@ -31,16 +33,16 @@ namespace JadeServer
 		grpc_server_ = std::unique_ptr<Server>(builder.BuildAndStart());
 		JadeCore::Logger::LogInfo("Server Listening On : " + server_address, "StartUp");
 
-		// Create the handler registry
-		RpcHandlerRegistry::Register(&service_, completion_queue_.get());
-		RpcHandlerRegistry::Create();
-
 		// Handle RPCs
 		this->Handle();
 	}
 
 	void Rpc::Handle()
 	{
+		// Initialize the rpc handler
+		RpcHandler* initRpcHandler = new RpcHandler(&service_, completion_queue_.get());
+		initRpcHandler->Create();
+		
 		void* tag;
 		bool ok;
 		
@@ -49,7 +51,7 @@ namespace JadeServer
 			GPR_ASSERT(ok);
 
 			// Create the Rpc Tag
-			RpcHandlerBase* rpcTag = static_cast<RpcHandlerBase*>(tag);
+			RpcHandler* rpcTag = static_cast<RpcHandler*>(tag);
 
 			if(rpcTag->GetStatus() == RpcHandlerStatus::Create)
 			{

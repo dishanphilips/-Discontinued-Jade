@@ -10,7 +10,7 @@
 
 namespace JadeServer
 {	
-	class RpcHandlerBase
+	class RpcHandler
 	{
 	protected:
 		/**
@@ -29,6 +29,22 @@ namespace JadeServer
 		grpc_impl::ServerContext context_;
 
 		/**
+		 * \brief The request
+		 */
+		JadeCore::CommandRequest command_request_;
+
+		/**
+		 * \brief The response
+		 */
+		JadeCore::CommandResponse command_response_;
+
+		/**
+		 * \brief The responder
+		 */
+		grpc_impl::ServerAsyncResponseWriter<JadeCore::CommandResponse> command_responder_;
+
+		
+		/**
 		 * \brief The status of the request
 		 */
 		RpcHandlerStatus status_;
@@ -38,26 +54,6 @@ namespace JadeServer
 		 */
 		bool ok_ = true;
 		
-		/**
-		 * \brief Spawn a new RPC handler
-		 */
-		virtual RpcHandlerBase* Spawn() = 0;
-
-		/**
-		 * \brief Initialize a rpc handler
-		 */
-		virtual void Initialize() = 0;
-
-		/**
-		 * \brief Execute the rpc call
-		 */
-		virtual void Execute() = 0;
-
-		/**
-		 * \brief Finalize the rpc handler
-		 */
-		virtual void Finalize() = 0;
-		
 	public:
 		
 		/**
@@ -65,7 +61,7 @@ namespace JadeServer
 		 * \param service 
 		 * \param completion_queue 
 		 */
-		RpcHandlerBase(JadeCore::RpcBase::AsyncService* service, grpc_impl::ServerCompletionQueue* completion_queue);
+		RpcHandler(JadeCore::RpcBase::AsyncService* service, grpc_impl::ServerCompletionQueue* completion_queue);
 
 		/**
 		 * \brief Get the current status of the rpc handler

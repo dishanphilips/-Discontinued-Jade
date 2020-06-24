@@ -38,6 +38,11 @@ target_sources(JadeCore
 		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/startup/startup_task.h"
 		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/startup/startup_task.cc"
 
+		# Command
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/command/i_command_handler.h"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/command/command_executor.h"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/command/command_executor.cc"
+
 		# Utils
 		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/utils/string_utils.h"
 		${CMAKE_CURRENT_SOURCE_DIR}"/core/src/utils/string_utils.cc"

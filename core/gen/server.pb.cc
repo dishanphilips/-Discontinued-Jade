@@ -15,6 +15,14 @@
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
 namespace JadeCore {
+class CommandRequestDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<CommandRequest> _instance;
+} _CommandRequest_default_instance_;
+class CommandResponseDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<CommandResponse> _instance;
+} _CommandResponse_default_instance_;
 class InfoRequestDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<InfoRequest> _instance;
@@ -24,6 +32,34 @@ class InfoResponseDefaultTypeInternal {
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<InfoResponse> _instance;
 } _InfoResponse_default_instance_;
 }  // namespace JadeCore
+static void InitDefaultsscc_info_CommandRequest_server_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::JadeCore::_CommandRequest_default_instance_;
+    new (ptr) ::JadeCore::CommandRequest();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::JadeCore::CommandRequest::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_CommandRequest_server_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_CommandRequest_server_2eproto}, {}};
+
+static void InitDefaultsscc_info_CommandResponse_server_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::JadeCore::_CommandResponse_default_instance_;
+    new (ptr) ::JadeCore::CommandResponse();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::JadeCore::CommandResponse::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_CommandResponse_server_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_CommandResponse_server_2eproto}, {}};
+
 static void InitDefaultsscc_info_InfoRequest_server_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -52,11 +88,25 @@ static void InitDefaultsscc_info_InfoResponse_server_2eproto() {
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_InfoResponse_server_2eproto =
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_InfoResponse_server_2eproto}, {}};
 
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_server_2eproto[2];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_server_2eproto[4];
 static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_server_2eproto = nullptr;
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_server_2eproto = nullptr;
 
 const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_server_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::JadeCore::CommandRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::JadeCore::CommandRequest, operation_),
+  PROTOBUF_FIELD_OFFSET(::JadeCore::CommandRequest, request_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::JadeCore::CommandResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::JadeCore::CommandResponse, operation_),
+  PROTOBUF_FIELD_OFFSET(::JadeCore::CommandResponse, response_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::JadeCore::InfoRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -71,39 +121,510 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_server_2eproto::offsets[] PROT
   PROTOBUF_FIELD_OFFSET(::JadeCore::InfoResponse, message_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, sizeof(::JadeCore::InfoRequest)},
-  { 6, -1, sizeof(::JadeCore::InfoResponse)},
+  { 0, -1, sizeof(::JadeCore::CommandRequest)},
+  { 7, -1, sizeof(::JadeCore::CommandResponse)},
+  { 14, -1, sizeof(::JadeCore::InfoRequest)},
+  { 20, -1, sizeof(::JadeCore::InfoResponse)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::JadeCore::_CommandRequest_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::JadeCore::_CommandResponse_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::JadeCore::_InfoRequest_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::JadeCore::_InfoResponse_default_instance_),
 };
 
 const char descriptor_table_protodef_server_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\014server.proto\022\010JadeCore\"\036\n\013InfoRequest\022"
-  "\017\n\007message\030\001 \001(\t\"\037\n\014InfoResponse\022\017\n\007mess"
-  "age\030\001 \001(\t2B\n\007RpcBase\0227\n\004Info\022\025.JadeCore."
-  "InfoRequest\032\026.JadeCore.InfoResponse\"\000b\006p"
-  "roto3"
+  "\n\014server.proto\022\010JadeCore\"4\n\016CommandReque"
+  "st\022\021\n\toperation\030\001 \001(\005\022\017\n\007request\030\002 \001(\014\"6"
+  "\n\017CommandResponse\022\021\n\toperation\030\001 \001(\005\022\020\n\010"
+  "response\030\003 \001(\014\"\036\n\013InfoRequest\022\017\n\007message"
+  "\030\001 \001(\t\"\037\n\014InfoResponse\022\017\n\007message\030\001 \001(\t2"
+  "J\n\007RpcBase\022\?\n\006Handle\022\030.JadeCore.CommandR"
+  "equest\032\031.JadeCore.CommandResponse\"\000b\006pro"
+  "to3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_server_2eproto_deps[1] = {
 };
-static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_server_2eproto_sccs[2] = {
+static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_server_2eproto_sccs[4] = {
+  &scc_info_CommandRequest_server_2eproto.base,
+  &scc_info_CommandResponse_server_2eproto.base,
   &scc_info_InfoRequest_server_2eproto.base,
   &scc_info_InfoResponse_server_2eproto.base,
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_server_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_server_2eproto = {
-  false, false, descriptor_table_protodef_server_2eproto, "server.proto", 165,
-  &descriptor_table_server_2eproto_once, descriptor_table_server_2eproto_sccs, descriptor_table_server_2eproto_deps, 2, 0,
+  false, false, descriptor_table_protodef_server_2eproto, "server.proto", 283,
+  &descriptor_table_server_2eproto_once, descriptor_table_server_2eproto_sccs, descriptor_table_server_2eproto_deps, 4, 0,
   schemas, file_default_instances, TableStruct_server_2eproto::offsets,
-  file_level_metadata_server_2eproto, 2, file_level_enum_descriptors_server_2eproto, file_level_service_descriptors_server_2eproto,
+  file_level_metadata_server_2eproto, 4, file_level_enum_descriptors_server_2eproto, file_level_service_descriptors_server_2eproto,
 };
 
 // Force running AddDescriptors() at dynamic initialization time.
 static bool dynamic_init_dummy_server_2eproto = (static_cast<void>(::PROTOBUF_NAMESPACE_ID::internal::AddDescriptors(&descriptor_table_server_2eproto)), true);
 namespace JadeCore {
+
+// ===================================================================
+
+void CommandRequest::InitAsDefaultInstance() {
+}
+class CommandRequest::_Internal {
+ public:
+};
+
+CommandRequest::CommandRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:JadeCore.CommandRequest)
+}
+CommandRequest::CommandRequest(const CommandRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  request_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_request().empty()) {
+    request_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_request(),
+      GetArena());
+  }
+  operation_ = from.operation_;
+  // @@protoc_insertion_point(copy_constructor:JadeCore.CommandRequest)
+}
+
+void CommandRequest::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_CommandRequest_server_2eproto.base);
+  request_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  operation_ = 0;
+}
+
+CommandRequest::~CommandRequest() {
+  // @@protoc_insertion_point(destructor:JadeCore.CommandRequest)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void CommandRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
+  request_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void CommandRequest::ArenaDtor(void* object) {
+  CommandRequest* _this = reinterpret_cast< CommandRequest* >(object);
+  (void)_this;
+}
+void CommandRequest::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void CommandRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const CommandRequest& CommandRequest::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_CommandRequest_server_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void CommandRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:JadeCore.CommandRequest)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  request_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  operation_ = 0;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* CommandRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  ::PROTOBUF_NAMESPACE_ID::Arena* arena = GetArena(); (void)arena;
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // int32 operation = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          operation_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // bytes request = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_request();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* CommandRequest::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:JadeCore.CommandRequest)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // int32 operation = 1;
+  if (this->operation() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(1, this->_internal_operation(), target);
+  }
+
+  // bytes request = 2;
+  if (this->request().size() > 0) {
+    target = stream->WriteBytesMaybeAliased(
+        2, this->_internal_request(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:JadeCore.CommandRequest)
+  return target;
+}
+
+size_t CommandRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:JadeCore.CommandRequest)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // bytes request = 2;
+  if (this->request().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
+        this->_internal_request());
+  }
+
+  // int32 operation = 1;
+  if (this->operation() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_operation());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void CommandRequest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:JadeCore.CommandRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  const CommandRequest* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<CommandRequest>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:JadeCore.CommandRequest)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:JadeCore.CommandRequest)
+    MergeFrom(*source);
+  }
+}
+
+void CommandRequest::MergeFrom(const CommandRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:JadeCore.CommandRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.request().size() > 0) {
+    _internal_set_request(from._internal_request());
+  }
+  if (from.operation() != 0) {
+    _internal_set_operation(from._internal_operation());
+  }
+}
+
+void CommandRequest::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:JadeCore.CommandRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void CommandRequest::CopyFrom(const CommandRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:JadeCore.CommandRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool CommandRequest::IsInitialized() const {
+  return true;
+}
+
+void CommandRequest::InternalSwap(CommandRequest* other) {
+  using std::swap;
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  request_.Swap(&other->request_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  swap(operation_, other->operation_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata CommandRequest::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void CommandResponse::InitAsDefaultInstance() {
+}
+class CommandResponse::_Internal {
+ public:
+};
+
+CommandResponse::CommandResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:JadeCore.CommandResponse)
+}
+CommandResponse::CommandResponse(const CommandResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  response_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_response().empty()) {
+    response_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_response(),
+      GetArena());
+  }
+  operation_ = from.operation_;
+  // @@protoc_insertion_point(copy_constructor:JadeCore.CommandResponse)
+}
+
+void CommandResponse::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_CommandResponse_server_2eproto.base);
+  response_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  operation_ = 0;
+}
+
+CommandResponse::~CommandResponse() {
+  // @@protoc_insertion_point(destructor:JadeCore.CommandResponse)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void CommandResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
+  response_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void CommandResponse::ArenaDtor(void* object) {
+  CommandResponse* _this = reinterpret_cast< CommandResponse* >(object);
+  (void)_this;
+}
+void CommandResponse::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void CommandResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const CommandResponse& CommandResponse::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_CommandResponse_server_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void CommandResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:JadeCore.CommandResponse)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  response_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  operation_ = 0;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* CommandResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  ::PROTOBUF_NAMESPACE_ID::Arena* arena = GetArena(); (void)arena;
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // int32 operation = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          operation_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // bytes response = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          auto str = _internal_mutable_response();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* CommandResponse::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:JadeCore.CommandResponse)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // int32 operation = 1;
+  if (this->operation() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(1, this->_internal_operation(), target);
+  }
+
+  // bytes response = 3;
+  if (this->response().size() > 0) {
+    target = stream->WriteBytesMaybeAliased(
+        3, this->_internal_response(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:JadeCore.CommandResponse)
+  return target;
+}
+
+size_t CommandResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:JadeCore.CommandResponse)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // bytes response = 3;
+  if (this->response().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
+        this->_internal_response());
+  }
+
+  // int32 operation = 1;
+  if (this->operation() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_operation());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void CommandResponse::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:JadeCore.CommandResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  const CommandResponse* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<CommandResponse>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:JadeCore.CommandResponse)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:JadeCore.CommandResponse)
+    MergeFrom(*source);
+  }
+}
+
+void CommandResponse::MergeFrom(const CommandResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:JadeCore.CommandResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.response().size() > 0) {
+    _internal_set_response(from._internal_response());
+  }
+  if (from.operation() != 0) {
+    _internal_set_operation(from._internal_operation());
+  }
+}
+
+void CommandResponse::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:JadeCore.CommandResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void CommandResponse::CopyFrom(const CommandResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:JadeCore.CommandResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool CommandResponse::IsInitialized() const {
+  return true;
+}
+
+void CommandResponse::InternalSwap(CommandResponse* other) {
+  using std::swap;
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  response_.Swap(&other->response_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  swap(operation_, other->operation_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata CommandResponse::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
 
 // ===================================================================
 
@@ -526,6 +1047,12 @@ void InfoResponse::InternalSwap(InfoResponse* other) {
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace JadeCore
 PROTOBUF_NAMESPACE_OPEN
+template<> PROTOBUF_NOINLINE ::JadeCore::CommandRequest* Arena::CreateMaybeMessage< ::JadeCore::CommandRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::JadeCore::CommandRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::JadeCore::CommandResponse* Arena::CreateMaybeMessage< ::JadeCore::CommandResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::JadeCore::CommandResponse >(arena);
+}
 template<> PROTOBUF_NOINLINE ::JadeCore::InfoRequest* Arena::CreateMaybeMessage< ::JadeCore::InfoRequest >(Arena* arena) {
   return Arena::CreateMessageInternal< ::JadeCore::InfoRequest >(arena);
 }

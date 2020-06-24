@@ -22,7 +22,7 @@
 namespace JadeCore {
 
 static const char* RpcBase_method_names[] = {
-  "/JadeCore.RpcBase/Info",
+  "/JadeCore.RpcBase/Handle",
 };
 
 std::unique_ptr< RpcBase::Stub> RpcBase::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -32,49 +32,49 @@ std::unique_ptr< RpcBase::Stub> RpcBase::NewStub(const std::shared_ptr< ::grpc::
 }
 
 RpcBase::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
-  : channel_(channel), rpcmethod_Info_(RpcBase_method_names[0], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  : channel_(channel), rpcmethod_Handle_(RpcBase_method_names[0], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
-::grpc::Status RpcBase::Stub::Info(::grpc::ClientContext* context, const ::JadeCore::InfoRequest& request, ::JadeCore::InfoResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_Info_, context, request, response);
+::grpc::Status RpcBase::Stub::Handle(::grpc::ClientContext* context, const ::JadeCore::CommandRequest& request, ::JadeCore::CommandResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_Handle_, context, request, response);
 }
 
-void RpcBase::Stub::experimental_async::Info(::grpc::ClientContext* context, const ::JadeCore::InfoRequest* request, ::JadeCore::InfoResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_Info_, context, request, response, std::move(f));
+void RpcBase::Stub::experimental_async::Handle(::grpc::ClientContext* context, const ::JadeCore::CommandRequest* request, ::JadeCore::CommandResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_Handle_, context, request, response, std::move(f));
 }
 
-void RpcBase::Stub::experimental_async::Info(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::JadeCore::InfoResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_Info_, context, request, response, std::move(f));
+void RpcBase::Stub::experimental_async::Handle(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::JadeCore::CommandResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_Handle_, context, request, response, std::move(f));
 }
 
-void RpcBase::Stub::experimental_async::Info(::grpc::ClientContext* context, const ::JadeCore::InfoRequest* request, ::JadeCore::InfoResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_Info_, context, request, response, reactor);
+void RpcBase::Stub::experimental_async::Handle(::grpc::ClientContext* context, const ::JadeCore::CommandRequest* request, ::JadeCore::CommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_Handle_, context, request, response, reactor);
 }
 
-void RpcBase::Stub::experimental_async::Info(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::JadeCore::InfoResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_Info_, context, request, response, reactor);
+void RpcBase::Stub::experimental_async::Handle(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::JadeCore::CommandResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_Handle_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::JadeCore::InfoResponse>* RpcBase::Stub::AsyncInfoRaw(::grpc::ClientContext* context, const ::JadeCore::InfoRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::JadeCore::InfoResponse>::Create(channel_.get(), cq, rpcmethod_Info_, context, request, true);
+::grpc::ClientAsyncResponseReader< ::JadeCore::CommandResponse>* RpcBase::Stub::AsyncHandleRaw(::grpc::ClientContext* context, const ::JadeCore::CommandRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::JadeCore::CommandResponse>::Create(channel_.get(), cq, rpcmethod_Handle_, context, request, true);
 }
 
-::grpc::ClientAsyncResponseReader< ::JadeCore::InfoResponse>* RpcBase::Stub::PrepareAsyncInfoRaw(::grpc::ClientContext* context, const ::JadeCore::InfoRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::JadeCore::InfoResponse>::Create(channel_.get(), cq, rpcmethod_Info_, context, request, false);
+::grpc::ClientAsyncResponseReader< ::JadeCore::CommandResponse>* RpcBase::Stub::PrepareAsyncHandleRaw(::grpc::ClientContext* context, const ::JadeCore::CommandRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::JadeCore::CommandResponse>::Create(channel_.get(), cq, rpcmethod_Handle_, context, request, false);
 }
 
 RpcBase::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       RpcBase_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< RpcBase::Service, ::JadeCore::InfoRequest, ::JadeCore::InfoResponse>(
-          std::mem_fn(&RpcBase::Service::Info), this)));
+      new ::grpc::internal::RpcMethodHandler< RpcBase::Service, ::JadeCore::CommandRequest, ::JadeCore::CommandResponse>(
+          std::mem_fn(&RpcBase::Service::Handle), this)));
 }
 
 RpcBase::Service::~Service() {
 }
 
-::grpc::Status RpcBase::Service::Info(::grpc::ServerContext* context, const ::JadeCore::InfoRequest* request, ::JadeCore::InfoResponse* response) {
+::grpc::Status RpcBase::Service::Handle(::grpc::ServerContext* context, const ::JadeCore::CommandRequest* request, ::JadeCore::CommandResponse* response) {
   (void) context;
   (void) request;
   (void) response;

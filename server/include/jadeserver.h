@@ -15,12 +15,6 @@
 
 #include "../src/rpc/rpc.h"
 #include "../src/rpc/rpc_handler_status.h"
-#include "../src/rpc/rpc_handler_base.h"
-#include "../src/rpc/rpc_handler_base_t.h"
-#include "../src/rpc/rpc_handler_registry.h"
-
-/****************************** Handler ******************************/
-
-#include "../src/handler/info_handler.h"
+#include "../src/rpc/rpc_handler.h"
 
 #endif

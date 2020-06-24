@@ -27,20 +27,19 @@ target_sources(JadeServer
 		# Startup
 		${CMAKE_CURRENT_SOURCE_DIR}"/server/src/startup/startup_task.h"
 		${CMAKE_CURRENT_SOURCE_DIR}"/server/src/startup/startup_task.cc"
+		${CMAKE_CURRENT_SOURCE_DIR}"/server/src/startup/command_startup.h"
+		${CMAKE_CURRENT_SOURCE_DIR}"/server/src/startup/command_startup.cc"
 
 		# RPC
 		${CMAKE_CURRENT_SOURCE_DIR}"/server/src/rpc/rpc_handler_status.h"
-		${CMAKE_CURRENT_SOURCE_DIR}"/server/src/rpc/rpc_handler_base.h"
-		${CMAKE_CURRENT_SOURCE_DIR}"/server/src/rpc/rpc_handler_base_t.h"
-		${CMAKE_CURRENT_SOURCE_DIR}"/server/src/rpc/rpc_handler_registry.h"
 		${CMAKE_CURRENT_SOURCE_DIR}"/server/src/rpc/rpc.h"
-		${CMAKE_CURRENT_SOURCE_DIR}"/server/src/rpc/rpc_handler_base.cc"
-		${CMAKE_CURRENT_SOURCE_DIR}"/server/src/rpc/rpc_handler_registry.cc"
 		${CMAKE_CURRENT_SOURCE_DIR}"/server/src/rpc/rpc.cc"
+		${CMAKE_CURRENT_SOURCE_DIR}"/server/src/rpc/rpc_handler.h"
+		${CMAKE_CURRENT_SOURCE_DIR}"/server/src/rpc/rpc_handler.cc"
 
-		# RPC Handlers
-		${CMAKE_CURRENT_SOURCE_DIR}"/server/src/handler/info_handler.h"
-		${CMAKE_CURRENT_SOURCE_DIR}"/server/src/handler/info_handler.cc"
+		# Command
+		${CMAKE_CURRENT_SOURCE_DIR}"/server/src/command/info_command_handler.h"
+		${CMAKE_CURRENT_SOURCE_DIR}"/server/src/command/info_command_handler.cc"
 )
 
 # Link Jade Core
