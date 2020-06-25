@@ -5,7 +5,7 @@ cmake_minimum_required (VERSION 3.8)
 #Jade JadeConsoleClient
 project ("JadeConsoleClient")
 
-add_executable (JadeConsoleClient "console_client/src/version.cc")
+add_executable (JadeConsoleClient "console_client/source/version.cc")
 
 target_sources(JadeConsoleClient
 	PUBLIC

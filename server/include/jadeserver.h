@@ -5,16 +5,16 @@
 
 /****************************** Server ******************************/
 
-#include "../src/server/server.h"
+#include "server/server.h"
 
 /****************************** Startup ******************************/
 
-#include "../src/startup/startup_task.h"
+#include "startup/startup_task.h"
 
 /****************************** RPC ******************************/
 
-#include "../src/rpc/rpc.h"
-#include "../src/rpc/rpc_handler_status.h"
-#include "../src/rpc/rpc_handler.h"
+#include "rpc/rpc.h"
+#include "rpc/rpc_handler_status.h"
+#include "rpc/rpc_handler.h"
 
 #endif

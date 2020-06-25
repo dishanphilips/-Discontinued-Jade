@@ -5,7 +5,7 @@ cmake_minimum_required (VERSION 3.8)
 #Jade ClientSDK
 project ("JadeClientSdk")
 
-add_library(JadeClientSdk "client_sdk/src/version.cc")
+add_library(JadeClientSdk "client_sdk/source/version.cc")
 
 target_sources(JadeClientSdk
 	PUBLIC

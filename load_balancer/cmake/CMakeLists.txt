@@ -5,7 +5,7 @@ cmake_minimum_required (VERSION 3.8)
 #Jade LoadBalancer
 project ("JadeLoadBalancer")
 
-add_executable (JadeLoadBalancer "load_balancer/src/version.cc")
+add_executable (JadeLoadBalancer "load_balancer/source/version.cc")
 
 target_sources(JadeLoadBalancer
 	PUBLIC
