@@ -1,127 +1,186 @@
 #include <iostream>
 #include <memory>
 #include <string>
-
-#include <grpcpp/grpcpp.h>
-#include <grpc/support/log.h>
 #include <thread>
 
-#include "../../core/gen/server.grpc.pb.h"
+#include <grpc++/grpc++.h>
+
 #include "../../core/gen/server.pb.h"
+#include "../../core/gen/server.grpc.pb.h"
 
 using grpc::Channel;
-using grpc::ClientAsyncResponseReader;
+using grpc::ClientAsyncReaderWriter;
 using grpc::ClientContext;
 using grpc::CompletionQueue;
 using grpc::Status;
 using JadeCore::CommandRequest;
 using JadeCore::CommandResponse;
-using JadeCore::RpcBase;
+using JadeCore::InfoRequest;
+using JadeCore::InfoResponse;
 
-class GreeterClient {
+// NOTE: This is a complex example for an asynchronous, bidirectional streaming
+// client. For a simpler example, start with the
+// greeter_client/greeter_async_client first.
+class AsyncBidiGreeterClient {
+    enum class Type {
+        READ = 1,
+        WRITE = 2,
+        CONNECT = 3,
+        WRITES_DONE = 4,
+        FINISH = 5
+    };
+
 public:
-    explicit GreeterClient(std::shared_ptr<Channel> channel)
-        : stub_(RpcBase::NewStub(channel)) {}
-
-    // Assembles the client's payload and sends it to the server.
-    void SayHello(const std::string& user) {
-        // Data we are sending to the server.
-		CommandRequest request;
-        request.set_operation(1);
-        request.set_request(user);
-
-        // Call object to store rpc data
-        AsyncClientCall* call = new AsyncClientCall;
-
-        // stub_->PrepareAsyncSayHello() creates an RPC object, returning
-        // an instance to store in "call" but does not actually start the RPC
-        // Because we are using the asynchronous API, we need to hold on to
-        // the "call" instance in order to get updates on the ongoing RPC.
-        call->response_reader = stub_->PrepareAsyncHandle(&call->context, &cq_);
-
-        // StartCall initiates the RPC call
-        call->response_reader->StartCall((void*)call);
-        call->response_reader->Write(request, (void*)call);
-
-    	// Request that, upon completion of the RPC, "reply" be updated with the
-        // server's response; "status" with the indication of whether the operation
-        // was successful. Tag the request with the memory address of the call object.
-        call->response_reader->Finish(&call->status, (void*)call);
-
+    explicit AsyncBidiGreeterClient(std::shared_ptr<Channel> channel)
+        : stub_(JadeCore::RpcBase::NewStub(channel)) {
+        grpc_thread_.reset(
+            new std::thread(std::bind(&AsyncBidiGreeterClient::GrpcThread, this)));
+        stream_ = stub_->AsyncHandle(&context_, &cq_,
+            reinterpret_cast<void*>(Type::CONNECT));
     }
 
-    // Loop while listening for completed responses.
-    // Prints out the response from the server.
-    void AsyncCompleteRpc() {
-        void* got_tag;
-        bool ok = false;
-
-        // Block until the next result is available in the completion queue "cq".
-        while (cq_.Next(&got_tag, &ok)) {
-            // The tag in this example is the memory location of the call object
-            AsyncClientCall* call = static_cast<AsyncClientCall*>(got_tag);
-
-            // Verify that the request was completed successfully. Note that "ok"
-            // corresponds solely to the request for updates introduced by Finish().
-            GPR_ASSERT(ok);
-
-            if (call->status.ok())
-                std::cout << "Greeter received: " << call->reply.response() << std::endl;
-            else
-                std::cout << "RPC failed" << std::endl;
-
-            // Once we're complete, deallocate the call object.
-            delete call;
+    // Similar to the async hello example in greeter_async_client but does not
+    // wait for the response. Instead queues up a tag in the completion queue
+    // that is notified when the server responds back (or when the stream is
+    // closed). Returns false when the stream is requested to be closed.
+    bool AsyncSayHello(const std::string& user) {
+        if (user == "quit") {
+            stream_->WritesDone(reinterpret_cast<void*>(Type::WRITES_DONE));
+            return false;
         }
+
+        InfoRequest infoRequest;
+        infoRequest.set_message(user);
+    	
+        // Data we are sending to the server.
+        CommandRequest request;
+        request.set_operation(1);
+        request.set_request(request.SerializeAsString());
+
+        // This is important: You can have at most one write or at most one read
+        // at any given time. The throttling is performed by gRPC completion
+        // queue. If you queue more than one write/read, the stream will crash.
+        // Because this stream is bidirectional, you *can* have a single read
+        // and a single write request queued for the same stream. Writes and reads
+        // are independent of each other in terms of ordering/delivery.
+        std::cout << " ** Sending request: " << user << std::endl;
+        stream_->Write(request, reinterpret_cast<void*>(Type::WRITE));
+        return true;
+    }
+
+    ~AsyncBidiGreeterClient() {
+        std::cout << "Shutting down client...." << std::endl;
+        grpc::Status status;
+        cq_.Shutdown();
+        grpc_thread_->join();
     }
 
 private:
+    void AsyncHelloRequestNextMessage() {
+        std::cout << " ** Got response: " << response_.response() << std::endl;
 
-    // struct for keeping state and data information
-    struct AsyncClientCall {
-        // Container for the data we expect from the server.
-        CommandResponse reply;
+        // The tag is the link between our thread (main thread) and the completion
+        // queue thread. The tag allows the completion queue to fan off
+        // notification handlers for the specified read/write requests as they
+        // are being processed by gRPC.
+        stream_->Read(&response_, reinterpret_cast<void*>(Type::READ));
+    }
 
-        // Context for the client. It could be used to convey extra information to
-        // the server and/or tweak certain RPC behaviors.
-        ClientContext context;
+    // Runs a gRPC completion-queue processing thread. Checks for 'Next' tag
+    // and processes them until there are no more (or when the completion queue
+    // is shutdown).
+    void GrpcThread() {
+        while (true) {
+            void* got_tag;
+            bool ok = false;
+            // Block until the next result is available in the completion queue "cq".
+            // The return value of Next should always be checked. This return value
+            // tells us whether there is any kind of event or the cq_ is shutting
+            // down.
+            if (!cq_.Next(&got_tag, &ok)) {
+                std::cerr << "Client stream closed. Quitting" << std::endl;
+                break;
+            }
 
-        // Storage for the status of the RPC upon completion.
-        Status status;
+            // It's important to process all tags even if the ok is false. One might
+            // want to deallocate memory that has be reinterpret_cast'ed to void*
+            // when the tag got initialized. For our example, we cast an int to a
+            // void*, so we don't have extra memory management to take care of.
+            if (ok) {
+                std::cout << std::endl
+                    << "**** Processing completion queue tag " << got_tag
+                    << std::endl;
+                switch (static_cast<Type>(reinterpret_cast<long>(got_tag))) {
+                case Type::READ:
+                    std::cout << "Read a new message." << std::endl;
+                    break;
+                case Type::WRITE:
+                    std::cout << "Sending message (async)." << std::endl;
+                    AsyncHelloRequestNextMessage();
+                    break;
+                case Type::CONNECT:
+                    std::cout << "Server connected." << std::endl;
+                    break;
+                case Type::WRITES_DONE:
+                    std::cout << "Server disconnecting." << std::endl;
+                    break;
+                case Type::FINISH:
+                    std::cout << "Client finish; status = "
+                        << (finish_status_.ok() ? "ok" : "cancelled")
+                        << std::endl;
+                    context_.TryCancel();
+                    cq_.Shutdown();
+                    break;
+                default:
+                    std::cerr << "Unexpected tag " << got_tag << std::endl;
+                    GPR_ASSERT(false);
+                }
+            }
+        }
+    }
 
-
-        std::unique_ptr<grpc::ClientAsyncReaderWriter<CommandRequest, CommandResponse>> response_reader;
-    };
-
-    // Out of the passed in Channel comes the stub, stored here, our view of the
-    // server's exposed services.
-    std::unique_ptr<RpcBase::Stub> stub_;
+    // Context for the client. It could be used to convey extra information to
+    // the server and/or tweak certain RPC behaviors.
+    ClientContext context_;
 
     // The producer-consumer queue we use to communicate asynchronously with the
     // gRPC runtime.
     CompletionQueue cq_;
+
+    // Out of the passed in Channel comes the stub, stored here, our view of the
+    // server's exposed services.
+    std::unique_ptr<JadeCore::RpcBase::Stub> stub_;
+
+    // The bidirectional, asynchronous stream for sending/receiving messages.
+    std::unique_ptr<ClientAsyncReaderWriter<CommandRequest, CommandResponse>> stream_;
+
+    // Allocated protobuf that holds the response. In real clients and servers,
+    // the memory management would a bit more complex as the thread that fills
+    // in the response should take care of concurrency as well as memory
+    // management.
+    CommandResponse response_;
+
+    // Thread that notifies the gRPC completion queue tags.
+    std::unique_ptr<std::thread> grpc_thread_;
+
+    // Finish status when the client is done with the stream.
+    grpc::Status finish_status_ = grpc::Status::OK;
 };
 
 int main(int argc, char** argv) {
-
-
-    // Instantiate the client. It requires a channel, out of which the actual RPCs
-    // are created. This channel models a connection to an endpoint (in this case,
-    // localhost at port 50051). We indicate that the channel isn't authenticated
-    // (use of InsecureChannelCredentials()).
-    GreeterClient greeter(grpc::CreateChannel(
+    AsyncBidiGreeterClient greeter(grpc::CreateChannel(
         "localhost:50051", grpc::InsecureChannelCredentials()));
 
-    // Spawn reader thread that loops indefinitely
-    std::thread thread_ = std::thread(&GreeterClient::AsyncCompleteRpc, &greeter);
+    std::string text;
+    while (true) {
+        std::cout << "Enter text (type quit to end): ";
+        std::cin >> text;
 
-    for (int i = 0; i < 100; i++) {
-        std::string user("world " + std::to_string(i));
-        greeter.SayHello(user);  // The actual RPC call!
+        // Async RPC call that sends a message and awaits a response.
+        if (!greeter.AsyncSayHello(text)) {
+            std::cout << "Quitting." << std::endl;
+            break;
+        }
     }
-
-    std::cout << "Press control-c to quit" << std::endl << std::endl;
-    thread_.join();  //blocks forever
-
     return 0;
 }

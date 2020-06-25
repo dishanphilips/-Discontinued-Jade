@@ -33,6 +33,8 @@ namespace JadeServer
 		RpcHandler* newHandler = new RpcHandler(service_, completion_queue_);
 		newHandler->Create();
 
+		command_responder_.Read(&command_request_, this);
+		
 		// Execute the current handler
 		command_response_.set_operation(command_request_.operation());
 		command_response_.set_response(JadeCore::CommandExecutor::HandleCommand(command_request_.operation(), command_request_.request()));
@@ -40,11 +42,11 @@ namespace JadeServer
 		// Finalize the task
 		if (ok_)
 		{
-			command_responder_.WriteAndFinish(command_response_, {}, grpc::Status::OK, this);
+			command_responder_.Write(command_response_, this);
 		}
 		else
 		{
-			command_responder_.WriteAndFinish(command_response_, {}, grpc::Status::CANCELLED, this);
+			command_responder_.Write(command_response_, this);
 		}
 		
 		// Mark it as finished

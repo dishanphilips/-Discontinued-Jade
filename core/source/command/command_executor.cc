@@ -17,13 +17,13 @@ namespace JadeCore
 
 	std::string CommandExecutor::HandleCommand(int operation, const std::string request)
 	{
-		if(handler_registry_.at(operation) != nullptr)
+		if(handler_registry_.find(operation) != handler_registry_.end())
 		{
 			return handler_registry_[operation]->Execute(request)->SerializeAsString();
 		}
 		else
 		{
-			throw std::invalid_argument("Could not find operation id : " + operation);
+			return  "No command found";
 		}
 	}
 }
