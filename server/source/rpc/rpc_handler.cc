@@ -5,57 +5,126 @@
 
 namespace JadeServer
 {
-	RpcHandler::RpcHandler(JadeCore::RpcBase::AsyncService* service, grpc_impl::ServerCompletionQueue* completion_queue) :
-		service_(service),
-		completion_queue_(completion_queue),
-		command_responder_(&context_),
-		status_(RpcHandlerStatus::Create)
+	RpcHandler::RpcHandler(
+		uint64_t id,
+		ServerCompletionQueue&rpc_queue,
+		ServerCompletionQueue&notification_queue,
+		RpcBase::AsyncService&service) :
+		id_(id),
+		status_(RpcStatus::Connecting),
+		rpc_queue_(&rpc_queue),
+		notification_queue_(&notification_queue),
+		server_context_(),
+		service_(&service),
+		command_stream_(server_context_.get())
 	{
 	}
 
-	RpcHandlerStatus RpcHandler::GetStatus()
+	RpcStatus RpcHandler::GetStatus() const
 	{
 		return status_;
 	}
 
-	void RpcHandler::Create()
+	unique_ptr<ServerContext> RpcHandler::GetServerContext() const
 	{
-		// Set the status to process
-		status_ = RpcHandlerStatus::Process;
-
-		// Initialize the handler
-		service_->RequestHandle(&context_, &command_responder_, completion_queue_, completion_queue_, this);
+		return unique_ptr<ServerContext>{server_context_.get()};
+	}
+	
+	unique_ptr<mutex> RpcHandler::GetHandlerLock() const
+	{
+		return unique_ptr<mutex>(handler_lock_.get());
 	}
 
-	void RpcHandler::Process()
+	bool RpcHandler::Create()
 	{
-		// Spawn a new handler and add it to the completion queue
-		RpcHandler* newHandler = new RpcHandler(service_, completion_queue_);
-		newHandler->Create();
+		// Initialize the handler
+		service_->RequestHandle(
+			server_context_.get(), 
+			&command_stream_, 
+			rpc_queue_.get(), 
+			notification_queue_.get(), 
+			reinterpret_cast<void*>(id_ << GRPC_EVENT_BIT_LENGTH | RpcEvent::Initialized));
 
-		command_responder_.Read(&command_request_, this);
-		
-		// Execute the current handler
-		command_response_.set_operation(command_request_.operation());
-		command_response_.set_response(JadeCore::CommandExecutor::HandleCommand(command_request_.operation(), command_request_.request()));
-		
-		// Finalize the task
-		if (ok_)
+		return true;
+	}
+
+	void RpcHandler::Process(RpcEvent event)
+	{
+		switch (event)
 		{
-			command_responder_.Write(command_response_, this);
+			case RpcEvent::Initialized:
+				command_stream_.Read(&command_,reinterpret_cast<void*>(id_ << GRPC_EVENT_BIT_LENGTH | RpcEvent::Read));
+				status_ = RpcStatus::WriteReady;
+				return;
+			case RpcEvent::Read:
+				command_stream_.Read(&command_,reinterpret_cast<void*>(id_ << GRPC_EVENT_BIT_LENGTH | RpcEvent::Read));
+				//this->SendCommand();
+				return;
+			case RpcEvent::Write:
+				if (!command_queue_.empty()) 
+				{
+					// Update the status
+					status_ = RpcStatus::WriteComplete;
+
+					// Write the first command on the command queue
+					command_stream_.Write(
+						*command_queue_.front(),
+						reinterpret_cast<void*>(id_ << GRPC_EVENT_BIT_LENGTH | RpcEvent::Write)
+					);
+
+					// Pop the command out of the front of the queue
+					command_queue_.pop_front();
+				}
+				else 
+				{
+					status_ = RpcStatus::WriteReady;
+				}
+				return;
+			default:
+				return;
+		}
+	}
+
+	void RpcHandler::Complete()
+	{
+		if (status_ == RpcStatus::Connecting)
+		{
+			return;
+		}
+
+		// Finish the stream
+		command_stream_.Finish(
+			grpc::Status::CANCELLED,
+			reinterpret_cast<void*>(id_ << GRPC_EVENT_BIT_LENGTH | RpcEvent::Finished)
+		);
+	}
+	
+	void RpcHandler::SendClientCommand(int operation, Message* command)
+	{
+		// Check if there is anything to be written
+		if (status_ != RpcStatus::WriteReady && status_ != RpcStatus::WriteComplete)
+		{
+			return;
 		}
 		else
 		{
-			command_responder_.Write(command_response_, this);
-		}
-		
-		// Mark it as finished
-		status_ = RpcHandlerStatus::Finish;
-	}
+			auto command_request = std::make_shared<Command>();
+			command_request->set_operation(operation);
+			command_request->set_request(command->SerializeAsString());
 
-	void RpcHandler::Dispose()
-	{
-		GPR_ASSERT(status_ == RpcHandlerStatus::Finish);
-		delete this;
+			// Check if the handler is ready to write
+			if(status_ == RpcStatus::WriteReady)
+			{
+				status_ = RpcStatus::WriteComplete;
+				command_stream_.Write(
+					*command_request, 
+					reinterpret_cast<void*>(id_ << GRPC_EVENT_BIT_LENGTH | RpcEvent::Write)
+				);
+			}
+			else
+			{
+				command_queue_.emplace_back(command_request);
+			}
+		}
 	}
 }

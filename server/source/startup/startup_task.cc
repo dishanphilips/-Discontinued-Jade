@@ -19,7 +19,7 @@ namespace JadeServer
 		command_startup->Execute();
 		
 		// 99. Finally listen to the rpc service
-		JadeCore::Logger::LogInfo("Creating Rpc Listener.", "ServerStartup");
+		JadeCore::Logger::LogInfo("ServerStartup", "Creating Rpc Listener.");
 
 		// Create the a thread to run the RPC service
 		rpc_ = new Rpc();
@@ -41,7 +41,7 @@ namespace JadeServer
 		JadeCore::StartupTask::OnComplete(status);
 
 		// Print success log
-		JadeCore::Logger::LogInfo("Server startup complete!", "ServerStartup");
+		JadeCore::Logger::LogInfo("ServerStartup", "Server startup complete!");
 	}
 
 	std::thread* StartupTask::GetRpcThread()

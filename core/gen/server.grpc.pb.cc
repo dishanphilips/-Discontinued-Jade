@@ -35,34 +35,34 @@ RpcBase::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
   : channel_(channel), rpcmethod_Handle_(RpcBase_method_names[0], ::grpc::internal::RpcMethod::BIDI_STREAMING, channel)
   {}
 
-::grpc::ClientReaderWriter< ::JadeCore::CommandRequest, ::JadeCore::CommandResponse>* RpcBase::Stub::HandleRaw(::grpc::ClientContext* context) {
-  return ::grpc_impl::internal::ClientReaderWriterFactory< ::JadeCore::CommandRequest, ::JadeCore::CommandResponse>::Create(channel_.get(), rpcmethod_Handle_, context);
+::grpc::ClientReaderWriter< ::JadeCore::Command, ::JadeCore::Command>* RpcBase::Stub::HandleRaw(::grpc::ClientContext* context) {
+  return ::grpc_impl::internal::ClientReaderWriterFactory< ::JadeCore::Command, ::JadeCore::Command>::Create(channel_.get(), rpcmethod_Handle_, context);
 }
 
-void RpcBase::Stub::experimental_async::Handle(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::JadeCore::CommandRequest,::JadeCore::CommandResponse>* reactor) {
-  ::grpc_impl::internal::ClientCallbackReaderWriterFactory< ::JadeCore::CommandRequest,::JadeCore::CommandResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_Handle_, context, reactor);
+void RpcBase::Stub::experimental_async::Handle(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::JadeCore::Command,::JadeCore::Command>* reactor) {
+  ::grpc_impl::internal::ClientCallbackReaderWriterFactory< ::JadeCore::Command,::JadeCore::Command>::Create(stub_->channel_.get(), stub_->rpcmethod_Handle_, context, reactor);
 }
 
-::grpc::ClientAsyncReaderWriter< ::JadeCore::CommandRequest, ::JadeCore::CommandResponse>* RpcBase::Stub::AsyncHandleRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
-  return ::grpc_impl::internal::ClientAsyncReaderWriterFactory< ::JadeCore::CommandRequest, ::JadeCore::CommandResponse>::Create(channel_.get(), cq, rpcmethod_Handle_, context, true, tag);
+::grpc::ClientAsyncReaderWriter< ::JadeCore::Command, ::JadeCore::Command>* RpcBase::Stub::AsyncHandleRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+  return ::grpc_impl::internal::ClientAsyncReaderWriterFactory< ::JadeCore::Command, ::JadeCore::Command>::Create(channel_.get(), cq, rpcmethod_Handle_, context, true, tag);
 }
 
-::grpc::ClientAsyncReaderWriter< ::JadeCore::CommandRequest, ::JadeCore::CommandResponse>* RpcBase::Stub::PrepareAsyncHandleRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncReaderWriterFactory< ::JadeCore::CommandRequest, ::JadeCore::CommandResponse>::Create(channel_.get(), cq, rpcmethod_Handle_, context, false, nullptr);
+::grpc::ClientAsyncReaderWriter< ::JadeCore::Command, ::JadeCore::Command>* RpcBase::Stub::PrepareAsyncHandleRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncReaderWriterFactory< ::JadeCore::Command, ::JadeCore::Command>::Create(channel_.get(), cq, rpcmethod_Handle_, context, false, nullptr);
 }
 
 RpcBase::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       RpcBase_method_names[0],
       ::grpc::internal::RpcMethod::BIDI_STREAMING,
-      new ::grpc::internal::BidiStreamingHandler< RpcBase::Service, ::JadeCore::CommandRequest, ::JadeCore::CommandResponse>(
+      new ::grpc::internal::BidiStreamingHandler< RpcBase::Service, ::JadeCore::Command, ::JadeCore::Command>(
           std::mem_fn(&RpcBase::Service::Handle), this)));
 }
 
 RpcBase::Service::~Service() {
 }
 
-::grpc::Status RpcBase::Service::Handle(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::JadeCore::CommandResponse, ::JadeCore::CommandRequest>* stream) {
+::grpc::Status RpcBase::Service::Handle(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::JadeCore::Command, ::JadeCore::Command>* stream) {
   (void) context;
   (void) stream;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");

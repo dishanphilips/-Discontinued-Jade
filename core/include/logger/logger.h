@@ -51,45 +51,60 @@ namespace JadeCore
 		/**
 		 * \brief Logs a given log with a tag and level in all appenders
 		 * \param level The severity of the log
-		 * \param message Message of the log
 		 * \param tags Tags to filter logs by
+		 * \param message Message of the log
+		 * \param args Formatting arguments
 		 */
-		static void Log(LogLevel level, std::string message, std::string tags);
+		static void Log(LogLevel level, std::string tags, std::string message, va_list args);
+		
+		/**
+		 * \brief Logs a given log with a tag and level in all appenders
+		 * \param level The severity of the log
+		 * \param tags Tags to filter logs by
+		 * \param message Message of the log
+		 * \param ... Formatting arguments
+		 */
+		static void Log(LogLevel level, std::string tags, std::string message, ... );
 
 		/**
 		 * \brief Append a trace log
-		 * \param message
 		 * \param tags
+		 * \param message
+		 * \param ... Formatting arguments
 		 */
-		static void LogTrace(std::string message, std::string tags);
+		static void LogTrace(std::string tags, std::string message, ...);
 
 		/**
 		 * \brief Append a debug log
-		 * \param message
 		 * \param tags
+		 * \param message
+		 * \param ... Formatting arguments
 		 */
-		static void LogDebug(std::string message, std::string tags);
+		static void LogDebug(std::string tags, std::string message, ...);
 
 		/**
 		 * \brief Append a info log
+		 * \param tags
 		 * \param message
-		 * \param tags* 
+		 * \param ... Formatting arguments
 		 */
-		static void LogInfo(std::string message, std::string tags);
+		static void LogInfo(std::string tags, std::string message, ...);
 
 		/**
 		 * \brief Append a warning log
-		 * \param message
 		 * \param tags
+		 * \param message
+		 * \param ... Formatting arguments
 		 */
-		static void LogWarning(std::string message, std::string tags);
+		static void LogWarning(std::string tags, std::string message, ...);
 
 		/**
 		 * \brief Append an error log
-		 * \param message
 		 * \param tags
+		 * \param message
+		 * \param ... Formatting arguments
 		 */
-		static void LogError(std::string message, std::string tags);
+		static void LogError(std::string tags, std::string message, ...);
 	};
 }
 

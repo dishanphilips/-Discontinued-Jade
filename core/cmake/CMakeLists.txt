@@ -29,11 +29,15 @@ target_sources(JadeCore
 										  
 		# Startup						  
 		${CMAKE_CURRENT_SOURCE_DIR}"/core/include/startup/startup_task.h"
+
+		# RPC
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/include/rpc/rpc_event.h"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/include/rpc/rpc_status.h"
 										  
 		# Command						  
 		${CMAKE_CURRENT_SOURCE_DIR}"/core/include/command/i_command_handler.h"
 		${CMAKE_CURRENT_SOURCE_DIR}"/core/include/command/command_executor.h"
-										  
+
 		# Utils							  
 		${CMAKE_CURRENT_SOURCE_DIR}"/core/include/utils/string_utils.h"
 		${CMAKE_CURRENT_SOURCE_DIR}"/core/include/utils/array_utils.h"
@@ -59,7 +63,11 @@ target_sources(JadeCore
 										  
 		# Startup						  
 		${CMAKE_CURRENT_SOURCE_DIR}"/core/source/startup/startup_task.cc"
-										  
+
+		# RPC
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/source/rpc/rpc_event.cc"
+		${CMAKE_CURRENT_SOURCE_DIR}"/core/source/rpc/rpc_status.cc"
+						
 		# Command						  
 		${CMAKE_CURRENT_SOURCE_DIR}"/core/source/command/command_executor.cc"
 										  

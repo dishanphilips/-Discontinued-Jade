@@ -32,6 +32,11 @@
 #include "utils/string_utils.h"
 #include "utils/vector_utils.h"
 
+/****************************** RPC ******************************/
+
+#include "rpc/rpc_event.h"
+#include "rpc/rpc_status.h"
+
 /****************************** Command ******************************/
 
 #include "command/i_command_handler.h"

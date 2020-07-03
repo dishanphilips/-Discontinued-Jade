@@ -39,22 +39,22 @@ class RpcBase final {
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::JadeCore::CommandRequest, ::JadeCore::CommandResponse>> Handle(::grpc::ClientContext* context) {
-      return std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::JadeCore::CommandRequest, ::JadeCore::CommandResponse>>(HandleRaw(context));
+    std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::JadeCore::Command, ::JadeCore::Command>> Handle(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::JadeCore::Command, ::JadeCore::Command>>(HandleRaw(context));
     }
-    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::JadeCore::CommandRequest, ::JadeCore::CommandResponse>> AsyncHandle(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
-      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::JadeCore::CommandRequest, ::JadeCore::CommandResponse>>(AsyncHandleRaw(context, cq, tag));
+    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::JadeCore::Command, ::JadeCore::Command>> AsyncHandle(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::JadeCore::Command, ::JadeCore::Command>>(AsyncHandleRaw(context, cq, tag));
     }
-    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::JadeCore::CommandRequest, ::JadeCore::CommandResponse>> PrepareAsyncHandle(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::JadeCore::CommandRequest, ::JadeCore::CommandResponse>>(PrepareAsyncHandleRaw(context, cq));
+    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::JadeCore::Command, ::JadeCore::Command>> PrepareAsyncHandle(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::JadeCore::Command, ::JadeCore::Command>>(PrepareAsyncHandleRaw(context, cq));
     }
     class experimental_async_interface {
      public:
       virtual ~experimental_async_interface() {}
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void Handle(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::JadeCore::CommandRequest,::JadeCore::CommandResponse>* reactor) = 0;
+      virtual void Handle(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::JadeCore::Command,::JadeCore::Command>* reactor) = 0;
       #else
-      virtual void Handle(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::JadeCore::CommandRequest,::JadeCore::CommandResponse>* reactor) = 0;
+      virtual void Handle(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::JadeCore::Command,::JadeCore::Command>* reactor) = 0;
       #endif
     };
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -65,29 +65,29 @@ class RpcBase final {
     #endif
     virtual class experimental_async_interface* experimental_async() { return nullptr; }
   private:
-    virtual ::grpc::ClientReaderWriterInterface< ::JadeCore::CommandRequest, ::JadeCore::CommandResponse>* HandleRaw(::grpc::ClientContext* context) = 0;
-    virtual ::grpc::ClientAsyncReaderWriterInterface< ::JadeCore::CommandRequest, ::JadeCore::CommandResponse>* AsyncHandleRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) = 0;
-    virtual ::grpc::ClientAsyncReaderWriterInterface< ::JadeCore::CommandRequest, ::JadeCore::CommandResponse>* PrepareAsyncHandleRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientReaderWriterInterface< ::JadeCore::Command, ::JadeCore::Command>* HandleRaw(::grpc::ClientContext* context) = 0;
+    virtual ::grpc::ClientAsyncReaderWriterInterface< ::JadeCore::Command, ::JadeCore::Command>* AsyncHandleRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) = 0;
+    virtual ::grpc::ClientAsyncReaderWriterInterface< ::JadeCore::Command, ::JadeCore::Command>* PrepareAsyncHandleRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel);
-    std::unique_ptr< ::grpc::ClientReaderWriter< ::JadeCore::CommandRequest, ::JadeCore::CommandResponse>> Handle(::grpc::ClientContext* context) {
-      return std::unique_ptr< ::grpc::ClientReaderWriter< ::JadeCore::CommandRequest, ::JadeCore::CommandResponse>>(HandleRaw(context));
+    std::unique_ptr< ::grpc::ClientReaderWriter< ::JadeCore::Command, ::JadeCore::Command>> Handle(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriter< ::JadeCore::Command, ::JadeCore::Command>>(HandleRaw(context));
     }
-    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::JadeCore::CommandRequest, ::JadeCore::CommandResponse>> AsyncHandle(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
-      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::JadeCore::CommandRequest, ::JadeCore::CommandResponse>>(AsyncHandleRaw(context, cq, tag));
+    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::JadeCore::Command, ::JadeCore::Command>> AsyncHandle(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::JadeCore::Command, ::JadeCore::Command>>(AsyncHandleRaw(context, cq, tag));
     }
-    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::JadeCore::CommandRequest, ::JadeCore::CommandResponse>> PrepareAsyncHandle(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::JadeCore::CommandRequest, ::JadeCore::CommandResponse>>(PrepareAsyncHandleRaw(context, cq));
+    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::JadeCore::Command, ::JadeCore::Command>> PrepareAsyncHandle(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::JadeCore::Command, ::JadeCore::Command>>(PrepareAsyncHandleRaw(context, cq));
     }
     class experimental_async final :
       public StubInterface::experimental_async_interface {
      public:
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void Handle(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::JadeCore::CommandRequest,::JadeCore::CommandResponse>* reactor) override;
+      void Handle(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::JadeCore::Command,::JadeCore::Command>* reactor) override;
       #else
-      void Handle(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::JadeCore::CommandRequest,::JadeCore::CommandResponse>* reactor) override;
+      void Handle(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::JadeCore::Command,::JadeCore::Command>* reactor) override;
       #endif
      private:
       friend class Stub;
@@ -100,9 +100,9 @@ class RpcBase final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class experimental_async async_stub_{this};
-    ::grpc::ClientReaderWriter< ::JadeCore::CommandRequest, ::JadeCore::CommandResponse>* HandleRaw(::grpc::ClientContext* context) override;
-    ::grpc::ClientAsyncReaderWriter< ::JadeCore::CommandRequest, ::JadeCore::CommandResponse>* AsyncHandleRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) override;
-    ::grpc::ClientAsyncReaderWriter< ::JadeCore::CommandRequest, ::JadeCore::CommandResponse>* PrepareAsyncHandleRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientReaderWriter< ::JadeCore::Command, ::JadeCore::Command>* HandleRaw(::grpc::ClientContext* context) override;
+    ::grpc::ClientAsyncReaderWriter< ::JadeCore::Command, ::JadeCore::Command>* AsyncHandleRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) override;
+    ::grpc::ClientAsyncReaderWriter< ::JadeCore::Command, ::JadeCore::Command>* PrepareAsyncHandleRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_Handle_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
@@ -111,7 +111,7 @@ class RpcBase final {
    public:
     Service();
     virtual ~Service();
-    virtual ::grpc::Status Handle(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::JadeCore::CommandResponse, ::JadeCore::CommandRequest>* stream);
+    virtual ::grpc::Status Handle(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::JadeCore::Command, ::JadeCore::Command>* stream);
   };
   template <class BaseClass>
   class WithAsyncMethod_Handle : public BaseClass {
@@ -125,11 +125,11 @@ class RpcBase final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Handle(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::JadeCore::CommandResponse, ::JadeCore::CommandRequest>* /*stream*/)  override {
+    ::grpc::Status Handle(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::JadeCore::Command, ::JadeCore::Command>* /*stream*/)  override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestHandle(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::JadeCore::CommandResponse, ::JadeCore::CommandRequest>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestHandle(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::JadeCore::Command, ::JadeCore::Command>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncBidiStreaming(0, context, stream, new_call_cq, notification_cq, tag);
     }
   };
@@ -146,7 +146,7 @@ class RpcBase final {
       ::grpc::Service::experimental().
     #endif
         MarkMethodCallback(0,
-          new ::grpc_impl::internal::CallbackBidiHandler< ::JadeCore::CommandRequest, ::JadeCore::CommandResponse>(
+          new ::grpc_impl::internal::CallbackBidiHandler< ::JadeCore::Command, ::JadeCore::Command>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
@@ -159,15 +159,15 @@ class RpcBase final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Handle(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::JadeCore::CommandResponse, ::JadeCore::CommandRequest>* /*stream*/)  override {
+    ::grpc::Status Handle(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::JadeCore::Command, ::JadeCore::Command>* /*stream*/)  override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    virtual ::grpc::ServerBidiReactor< ::JadeCore::CommandRequest, ::JadeCore::CommandResponse>* Handle(
+    virtual ::grpc::ServerBidiReactor< ::JadeCore::Command, ::JadeCore::Command>* Handle(
       ::grpc::CallbackServerContext* /*context*/)
     #else
-    virtual ::grpc::experimental::ServerBidiReactor< ::JadeCore::CommandRequest, ::JadeCore::CommandResponse>* Handle(
+    virtual ::grpc::experimental::ServerBidiReactor< ::JadeCore::Command, ::JadeCore::Command>* Handle(
       ::grpc::experimental::CallbackServerContext* /*context*/)
     #endif
       { return nullptr; }
@@ -189,7 +189,7 @@ class RpcBase final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Handle(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::JadeCore::CommandResponse, ::JadeCore::CommandRequest>* /*stream*/)  override {
+    ::grpc::Status Handle(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::JadeCore::Command, ::JadeCore::Command>* /*stream*/)  override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -206,7 +206,7 @@ class RpcBase final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Handle(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::JadeCore::CommandResponse, ::JadeCore::CommandRequest>* /*stream*/)  override {
+    ::grpc::Status Handle(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::JadeCore::Command, ::JadeCore::Command>* /*stream*/)  override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -239,7 +239,7 @@ class RpcBase final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Handle(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::JadeCore::CommandResponse, ::JadeCore::CommandRequest>* /*stream*/)  override {
+    ::grpc::Status Handle(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::JadeCore::Command, ::JadeCore::Command>* /*stream*/)  override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }

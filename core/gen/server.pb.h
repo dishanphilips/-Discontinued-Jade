@@ -47,7 +47,7 @@ struct TableStruct_server_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxillaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[4]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[3]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -55,12 +55,9 @@ struct TableStruct_server_2eproto {
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_server_2eproto;
 namespace JadeCore {
-class CommandRequest;
-class CommandRequestDefaultTypeInternal;
-extern CommandRequestDefaultTypeInternal _CommandRequest_default_instance_;
-class CommandResponse;
-class CommandResponseDefaultTypeInternal;
-extern CommandResponseDefaultTypeInternal _CommandResponse_default_instance_;
+class Command;
+class CommandDefaultTypeInternal;
+extern CommandDefaultTypeInternal _Command_default_instance_;
 class InfoRequest;
 class InfoRequestDefaultTypeInternal;
 extern InfoRequestDefaultTypeInternal _InfoRequest_default_instance_;
@@ -69,8 +66,7 @@ class InfoResponseDefaultTypeInternal;
 extern InfoResponseDefaultTypeInternal _InfoResponse_default_instance_;
 }  // namespace JadeCore
 PROTOBUF_NAMESPACE_OPEN
-template<> ::JadeCore::CommandRequest* Arena::CreateMaybeMessage<::JadeCore::CommandRequest>(Arena*);
-template<> ::JadeCore::CommandResponse* Arena::CreateMaybeMessage<::JadeCore::CommandResponse>(Arena*);
+template<> ::JadeCore::Command* Arena::CreateMaybeMessage<::JadeCore::Command>(Arena*);
 template<> ::JadeCore::InfoRequest* Arena::CreateMaybeMessage<::JadeCore::InfoRequest>(Arena*);
 template<> ::JadeCore::InfoResponse* Arena::CreateMaybeMessage<::JadeCore::InfoResponse>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
@@ -78,23 +74,23 @@ namespace JadeCore {
 
 // ===================================================================
 
-class CommandRequest PROTOBUF_FINAL :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:JadeCore.CommandRequest) */ {
+class Command PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:JadeCore.Command) */ {
  public:
-  inline CommandRequest() : CommandRequest(nullptr) {};
-  virtual ~CommandRequest();
+  inline Command() : Command(nullptr) {};
+  virtual ~Command();
 
-  CommandRequest(const CommandRequest& from);
-  CommandRequest(CommandRequest&& from) noexcept
-    : CommandRequest() {
+  Command(const Command& from);
+  Command(Command&& from) noexcept
+    : Command() {
     *this = ::std::move(from);
   }
 
-  inline CommandRequest& operator=(const CommandRequest& from) {
+  inline Command& operator=(const Command& from) {
     CopyFrom(from);
     return *this;
   }
-  inline CommandRequest& operator=(CommandRequest&& from) noexcept {
+  inline Command& operator=(Command&& from) noexcept {
     if (GetArena() == from.GetArena()) {
       if (this != &from) InternalSwap(&from);
     } else {
@@ -112,20 +108,20 @@ class CommandRequest PROTOBUF_FINAL :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return GetMetadataStatic().reflection;
   }
-  static const CommandRequest& default_instance();
+  static const Command& default_instance();
 
   static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const CommandRequest* internal_default_instance() {
-    return reinterpret_cast<const CommandRequest*>(
-               &_CommandRequest_default_instance_);
+  static inline const Command* internal_default_instance() {
+    return reinterpret_cast<const Command*>(
+               &_Command_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     0;
 
-  friend void swap(CommandRequest& a, CommandRequest& b) {
+  friend void swap(Command& a, Command& b) {
     a.Swap(&b);
   }
-  inline void Swap(CommandRequest* other) {
+  inline void Swap(Command* other) {
     if (other == this) return;
     if (GetArena() == other->GetArena()) {
       InternalSwap(other);
@@ -133,7 +129,7 @@ class CommandRequest PROTOBUF_FINAL :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(CommandRequest* other) {
+  void UnsafeArenaSwap(Command* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -141,17 +137,17 @@ class CommandRequest PROTOBUF_FINAL :
 
   // implements Message ----------------------------------------------
 
-  inline CommandRequest* New() const final {
-    return CreateMaybeMessage<CommandRequest>(nullptr);
+  inline Command* New() const final {
+    return CreateMaybeMessage<Command>(nullptr);
   }
 
-  CommandRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<CommandRequest>(arena);
+  Command* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<Command>(arena);
   }
   void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
   void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const CommandRequest& from);
-  void MergeFrom(const CommandRequest& from);
+  void CopyFrom(const Command& from);
+  void MergeFrom(const Command& from);
   PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
   bool IsInitialized() const final;
 
@@ -165,13 +161,13 @@ class CommandRequest PROTOBUF_FINAL :
   inline void SharedCtor();
   inline void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(CommandRequest* other);
+  void InternalSwap(Command* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "JadeCore.CommandRequest";
+    return "JadeCore.Command";
   }
   protected:
-  explicit CommandRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  explicit Command(::PROTOBUF_NAMESPACE_ID::Arena* arena);
   private:
   static void ArenaDtor(void* object);
   inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -228,7 +224,7 @@ class CommandRequest PROTOBUF_FINAL :
   void _internal_set_operation(::PROTOBUF_NAMESPACE_ID::int32 value);
   public:
 
-  // @@protoc_insertion_point(class_scope:JadeCore.CommandRequest)
+  // @@protoc_insertion_point(class_scope:JadeCore.Command)
  private:
   class _Internal;
 
@@ -236,170 +232,6 @@ class CommandRequest PROTOBUF_FINAL :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr request_;
-  ::PROTOBUF_NAMESPACE_ID::int32 operation_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_server_2eproto;
-};
-// -------------------------------------------------------------------
-
-class CommandResponse PROTOBUF_FINAL :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:JadeCore.CommandResponse) */ {
- public:
-  inline CommandResponse() : CommandResponse(nullptr) {};
-  virtual ~CommandResponse();
-
-  CommandResponse(const CommandResponse& from);
-  CommandResponse(CommandResponse&& from) noexcept
-    : CommandResponse() {
-    *this = ::std::move(from);
-  }
-
-  inline CommandResponse& operator=(const CommandResponse& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline CommandResponse& operator=(CommandResponse&& from) noexcept {
-    if (GetArena() == from.GetArena()) {
-      if (this != &from) InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return GetMetadataStatic().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return GetMetadataStatic().reflection;
-  }
-  static const CommandResponse& default_instance();
-
-  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const CommandResponse* internal_default_instance() {
-    return reinterpret_cast<const CommandResponse*>(
-               &_CommandResponse_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    1;
-
-  friend void swap(CommandResponse& a, CommandResponse& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(CommandResponse* other) {
-    if (other == this) return;
-    if (GetArena() == other->GetArena()) {
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(CommandResponse* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  inline CommandResponse* New() const final {
-    return CreateMaybeMessage<CommandResponse>(nullptr);
-  }
-
-  CommandResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<CommandResponse>(arena);
-  }
-  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const CommandResponse& from);
-  void MergeFrom(const CommandResponse& from);
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
-      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  inline void SharedCtor();
-  inline void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(CommandResponse* other);
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "JadeCore.CommandResponse";
-  }
-  protected:
-  explicit CommandResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
-  private:
-  static void ArenaDtor(void* object);
-  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
-  public:
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-  private:
-  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
-    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_server_2eproto);
-    return ::descriptor_table_server_2eproto.file_level_metadata[kIndexInFileMessages];
-  }
-
-  public:
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kResponseFieldNumber = 3,
-    kOperationFieldNumber = 1,
-  };
-  // bytes response = 3;
-  void clear_response();
-  const std::string& response() const;
-  void set_response(const std::string& value);
-  void set_response(std::string&& value);
-  void set_response(const char* value);
-  void set_response(const void* value, size_t size);
-  std::string* mutable_response();
-  std::string* release_response();
-  void set_allocated_response(std::string* response);
-  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
-  "    string fields are deprecated and will be removed in a"
-  "    future release.")
-  std::string* unsafe_arena_release_response();
-  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
-  "    string fields are deprecated and will be removed in a"
-  "    future release.")
-  void unsafe_arena_set_allocated_response(
-      std::string* response);
-  private:
-  const std::string& _internal_response() const;
-  void _internal_set_response(const std::string& value);
-  std::string* _internal_mutable_response();
-  public:
-
-  // int32 operation = 1;
-  void clear_operation();
-  ::PROTOBUF_NAMESPACE_ID::int32 operation() const;
-  void set_operation(::PROTOBUF_NAMESPACE_ID::int32 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int32 _internal_operation() const;
-  void _internal_set_operation(::PROTOBUF_NAMESPACE_ID::int32 value);
-  public:
-
-  // @@protoc_insertion_point(class_scope:JadeCore.CommandResponse)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr response_;
   ::PROTOBUF_NAMESPACE_ID::int32 operation_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_server_2eproto;
@@ -448,7 +280,7 @@ class InfoRequest PROTOBUF_FINAL :
                &_InfoRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    1;
 
   friend void swap(InfoRequest& a, InfoRequest& b) {
     a.Swap(&b);
@@ -601,7 +433,7 @@ class InfoResponse PROTOBUF_FINAL :
                &_InfoResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    2;
 
   friend void swap(InfoResponse& a, InfoResponse& b) {
     a.Swap(&b);
@@ -719,80 +551,80 @@ class InfoResponse PROTOBUF_FINAL :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
-// CommandRequest
+// Command
 
 // int32 operation = 1;
-inline void CommandRequest::clear_operation() {
+inline void Command::clear_operation() {
   operation_ = 0;
 }
-inline ::PROTOBUF_NAMESPACE_ID::int32 CommandRequest::_internal_operation() const {
+inline ::PROTOBUF_NAMESPACE_ID::int32 Command::_internal_operation() const {
   return operation_;
 }
-inline ::PROTOBUF_NAMESPACE_ID::int32 CommandRequest::operation() const {
-  // @@protoc_insertion_point(field_get:JadeCore.CommandRequest.operation)
+inline ::PROTOBUF_NAMESPACE_ID::int32 Command::operation() const {
+  // @@protoc_insertion_point(field_get:JadeCore.Command.operation)
   return _internal_operation();
 }
-inline void CommandRequest::_internal_set_operation(::PROTOBUF_NAMESPACE_ID::int32 value) {
+inline void Command::_internal_set_operation(::PROTOBUF_NAMESPACE_ID::int32 value) {
   
   operation_ = value;
 }
-inline void CommandRequest::set_operation(::PROTOBUF_NAMESPACE_ID::int32 value) {
+inline void Command::set_operation(::PROTOBUF_NAMESPACE_ID::int32 value) {
   _internal_set_operation(value);
-  // @@protoc_insertion_point(field_set:JadeCore.CommandRequest.operation)
+  // @@protoc_insertion_point(field_set:JadeCore.Command.operation)
 }
 
 // bytes request = 2;
-inline void CommandRequest::clear_request() {
+inline void Command::clear_request() {
   request_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
-inline const std::string& CommandRequest::request() const {
-  // @@protoc_insertion_point(field_get:JadeCore.CommandRequest.request)
+inline const std::string& Command::request() const {
+  // @@protoc_insertion_point(field_get:JadeCore.Command.request)
   return _internal_request();
 }
-inline void CommandRequest::set_request(const std::string& value) {
+inline void Command::set_request(const std::string& value) {
   _internal_set_request(value);
-  // @@protoc_insertion_point(field_set:JadeCore.CommandRequest.request)
+  // @@protoc_insertion_point(field_set:JadeCore.Command.request)
 }
-inline std::string* CommandRequest::mutable_request() {
-  // @@protoc_insertion_point(field_mutable:JadeCore.CommandRequest.request)
+inline std::string* Command::mutable_request() {
+  // @@protoc_insertion_point(field_mutable:JadeCore.Command.request)
   return _internal_mutable_request();
 }
-inline const std::string& CommandRequest::_internal_request() const {
+inline const std::string& Command::_internal_request() const {
   return request_.Get();
 }
-inline void CommandRequest::_internal_set_request(const std::string& value) {
+inline void Command::_internal_set_request(const std::string& value) {
   
   request_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
 }
-inline void CommandRequest::set_request(std::string&& value) {
+inline void Command::set_request(std::string&& value) {
   
   request_.Set(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:JadeCore.CommandRequest.request)
+  // @@protoc_insertion_point(field_set_rvalue:JadeCore.Command.request)
 }
-inline void CommandRequest::set_request(const char* value) {
+inline void Command::set_request(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   request_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
               GetArena());
-  // @@protoc_insertion_point(field_set_char:JadeCore.CommandRequest.request)
+  // @@protoc_insertion_point(field_set_char:JadeCore.Command.request)
 }
-inline void CommandRequest::set_request(const void* value,
+inline void Command::set_request(const void* value,
     size_t size) {
   
   request_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:JadeCore.CommandRequest.request)
+  // @@protoc_insertion_point(field_set_pointer:JadeCore.Command.request)
 }
-inline std::string* CommandRequest::_internal_mutable_request() {
+inline std::string* Command::_internal_mutable_request() {
   
   return request_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
-inline std::string* CommandRequest::release_request() {
-  // @@protoc_insertion_point(field_release:JadeCore.CommandRequest.request)
+inline std::string* Command::release_request() {
+  // @@protoc_insertion_point(field_release:JadeCore.Command.request)
   return request_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
-inline void CommandRequest::set_allocated_request(std::string* request) {
+inline void Command::set_allocated_request(std::string* request) {
   if (request != nullptr) {
     
   } else {
@@ -800,16 +632,16 @@ inline void CommandRequest::set_allocated_request(std::string* request) {
   }
   request_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), request,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:JadeCore.CommandRequest.request)
+  // @@protoc_insertion_point(field_set_allocated:JadeCore.Command.request)
 }
-inline std::string* CommandRequest::unsafe_arena_release_request() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:JadeCore.CommandRequest.request)
+inline std::string* Command::unsafe_arena_release_request() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:JadeCore.Command.request)
   GOOGLE_DCHECK(GetArena() != nullptr);
   
   return request_.UnsafeArenaRelease(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       GetArena());
 }
-inline void CommandRequest::unsafe_arena_set_allocated_request(
+inline void Command::unsafe_arena_set_allocated_request(
     std::string* request) {
   GOOGLE_DCHECK(GetArena() != nullptr);
   if (request != nullptr) {
@@ -819,112 +651,7 @@ inline void CommandRequest::unsafe_arena_set_allocated_request(
   }
   request_.UnsafeArenaSetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       request, GetArena());
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:JadeCore.CommandRequest.request)
-}
-
-// -------------------------------------------------------------------
-
-// CommandResponse
-
-// int32 operation = 1;
-inline void CommandResponse::clear_operation() {
-  operation_ = 0;
-}
-inline ::PROTOBUF_NAMESPACE_ID::int32 CommandResponse::_internal_operation() const {
-  return operation_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::int32 CommandResponse::operation() const {
-  // @@protoc_insertion_point(field_get:JadeCore.CommandResponse.operation)
-  return _internal_operation();
-}
-inline void CommandResponse::_internal_set_operation(::PROTOBUF_NAMESPACE_ID::int32 value) {
-  
-  operation_ = value;
-}
-inline void CommandResponse::set_operation(::PROTOBUF_NAMESPACE_ID::int32 value) {
-  _internal_set_operation(value);
-  // @@protoc_insertion_point(field_set:JadeCore.CommandResponse.operation)
-}
-
-// bytes response = 3;
-inline void CommandResponse::clear_response() {
-  response_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-}
-inline const std::string& CommandResponse::response() const {
-  // @@protoc_insertion_point(field_get:JadeCore.CommandResponse.response)
-  return _internal_response();
-}
-inline void CommandResponse::set_response(const std::string& value) {
-  _internal_set_response(value);
-  // @@protoc_insertion_point(field_set:JadeCore.CommandResponse.response)
-}
-inline std::string* CommandResponse::mutable_response() {
-  // @@protoc_insertion_point(field_mutable:JadeCore.CommandResponse.response)
-  return _internal_mutable_response();
-}
-inline const std::string& CommandResponse::_internal_response() const {
-  return response_.Get();
-}
-inline void CommandResponse::_internal_set_response(const std::string& value) {
-  
-  response_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
-}
-inline void CommandResponse::set_response(std::string&& value) {
-  
-  response_.Set(
-    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:JadeCore.CommandResponse.response)
-}
-inline void CommandResponse::set_response(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  
-  response_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
-              GetArena());
-  // @@protoc_insertion_point(field_set_char:JadeCore.CommandResponse.response)
-}
-inline void CommandResponse::set_response(const void* value,
-    size_t size) {
-  
-  response_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
-      reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:JadeCore.CommandResponse.response)
-}
-inline std::string* CommandResponse::_internal_mutable_response() {
-  
-  return response_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-}
-inline std::string* CommandResponse::release_response() {
-  // @@protoc_insertion_point(field_release:JadeCore.CommandResponse.response)
-  return response_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-}
-inline void CommandResponse::set_allocated_response(std::string* response) {
-  if (response != nullptr) {
-    
-  } else {
-    
-  }
-  response_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), response,
-      GetArena());
-  // @@protoc_insertion_point(field_set_allocated:JadeCore.CommandResponse.response)
-}
-inline std::string* CommandResponse::unsafe_arena_release_response() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:JadeCore.CommandResponse.response)
-  GOOGLE_DCHECK(GetArena() != nullptr);
-  
-  return response_.UnsafeArenaRelease(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      GetArena());
-}
-inline void CommandResponse::unsafe_arena_set_allocated_response(
-    std::string* response) {
-  GOOGLE_DCHECK(GetArena() != nullptr);
-  if (response != nullptr) {
-    
-  } else {
-    
-  }
-  response_.UnsafeArenaSetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      response, GetArena());
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:JadeCore.CommandResponse.response)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:JadeCore.Command.request)
 }
 
 // -------------------------------------------------------------------
@@ -1100,8 +827,6 @@ inline void InfoResponse::unsafe_arena_set_allocated_message(
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
-// -------------------------------------------------------------------
-
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

@@ -3,11 +3,20 @@
 #ifndef JADE_CORE_INCLUDE_LOG_APPENDERS_CONSOLEAPPENDER_H_
 #define JADE_CORE_INCLUDE_LOG_APPENDERS_CONSOLEAPPENDER_H_
 
-#include <list>
+#include <string>
+#include <iostream>
+#include <vector>
+#include <cstdarg>
+
+#include "../../include/logger/logger.h"
+#include "../../include/utils/date_time_utils.h"
 
 #include "log_level.h"
 #include "i_log_appender.h"
 #include "../tick/tickable_base.h"
+
+using std::string;
+using std::list;
 
 namespace JadeCore
 {
@@ -18,16 +27,17 @@ namespace JadeCore
 		/**
 		 * \brief A list of logs that need to be appended
 		 */
-		std::list<std::string> _logs;
+		list<string> _logs;
 	public:
 		
 		/**
 		 * \brief Append a log to console
-		 * \param level 
-		 * \param message 
+		 * \param level
 		 * \param tags 
+		 * \param message 
+		 * \param args Formatting arguments 
 		 */
-		void Append(LogLevel level, std::string message, std::string tags) override;
+		void Append(LogLevel level, string tags, string message, va_list args) override;
 
 		/**
 		 * \brief 

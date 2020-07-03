@@ -21,7 +21,6 @@ target_sources(JadeServer
 		${CMAKE_CURRENT_SOURCE_DIR}"/server/include/startup/command_startup.h"
 											
 		# RPC								
-		${CMAKE_CURRENT_SOURCE_DIR}"/server/include/rpc/rpc_handler_status.h"
 		${CMAKE_CURRENT_SOURCE_DIR}"/server/include/rpc/rpc.h"
 		${CMAKE_CURRENT_SOURCE_DIR}"/server/include/rpc/rpc_handler.h"
 											

@@ -1,8 +1,11 @@
+#include <cstdarg>
 #include <list>
 #include <string>
 
 #include "../../include/logger/logger.h"
 #include "../../include/logger/i_log_appender.h"
+
+using std::string;
 
 namespace JadeCore
 {
@@ -23,15 +26,15 @@ namespace JadeCore
 		{
 			default:
 				
-			case JadeCore::LogLevel::Trace:
+			case LogLevel::Trace:
 				return "Trace";
-			case JadeCore::LogLevel::Debug:
+			case LogLevel::Debug:
 				return "Debug";
-			case JadeCore::LogLevel::Info:
+			case LogLevel::Info:
 				return "Info";
-			case JadeCore::LogLevel::Warning:
+			case LogLevel::Warning:
 				return "Warning";
-			case JadeCore::LogLevel::Error:
+			case LogLevel::Error:
 				return "Error";
 		}
 	}
@@ -46,36 +49,53 @@ namespace JadeCore
 		appenders_.remove(appender);
 	}
 
-	void Logger::Log(LogLevel level, std::string message, std::string tags)
+	void Logger::Log(LogLevel level, std::string tags, std::string message, va_list args)
 	{
-		for (ILogAppender*appender : appenders_)
+		for (ILogAppender* appender : appenders_)
 		{
-			appender->Append(level, message, tags);
+			appender->Append(level, tags, message, args);
 		}
 	}
 
-	void Logger::LogTrace(std::string message, std::string tags)
+	void Logger::Log(LogLevel level, string tags, string message, ...)
 	{
-		Log(LogLevel::Trace, message, tags);
+		va_list args;
+		va_start(args, message);
+		Log(level, tags, message, args);
 	}
 
-	void Logger::LogDebug(const std::string message, std::string tags)
+	void Logger::LogTrace(string tags, string message, ...)
 	{
-		Log(LogLevel::Debug, message, tags);
+		va_list args;
+		va_start(args, message);
+		Log(LogLevel::Trace, tags, message, args);
 	}
 
-	void Logger::LogInfo(const std::string message, std::string tags)
+	void Logger::LogDebug(string tags, string message, ...)
 	{
-		Log(LogLevel::Info, message, tags);
+		va_list args;
+		va_start(args, message);
+		Log(LogLevel::Debug, tags, message, args);
 	}
 
-	void Logger::LogWarning(const std::string message, std::string tags)
+	void Logger::LogInfo(string tags, string message, ...)
 	{
-		Log(LogLevel::Warning, message, tags);
+		va_list args;
+		va_start(args, message);
+		Log(LogLevel::Info, tags, message, args);
 	}
 
-	void Logger::LogError(const std::string message, std::string tags)
+	void Logger::LogWarning(string tags, string message, ...)
 	{
-		Log(LogLevel::Error, message, tags);
+		va_list args;
+		va_start(args, message);
+		Log(LogLevel::Warning, tags, message, args);
+	}
+
+	void Logger::LogError(string tags, string message, ...)
+	{
+		va_list args;
+		va_start(args, message);
+		Log(LogLevel::Trace, tags, message, args);
 	}
 }

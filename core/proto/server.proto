@@ -5,17 +5,12 @@ syntax = "proto3";
 package JadeCore;
 
 service RpcBase {
-	rpc Handle (stream CommandRequest) returns (stream CommandResponse) {}
+	rpc Handle (stream Command) returns (stream Command) {}
 }
 
-message CommandRequest {
+message Command {
 	int32 operation = 1;
 	bytes request = 2;
-}
-
-message CommandResponse {
-	int32 operation = 1;
-	bytes response = 3;
 }
 
 message InfoRequest{

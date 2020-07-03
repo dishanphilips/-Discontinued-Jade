@@ -5,13 +5,13 @@ namespace JadeServer
 {
 	void CommandStartup::Execute()
 	{
-		JadeCore::Logger::LogInfo("Registering Command Handlers", "StartUp");
+		JadeCore::Logger::LogInfo("StartUp", "Registering Command Handlers");
 		
 		JadeCore::CommandExecutor::Register(1, new JadeServer::InfoCommandHandler());
 	}
 
 	void CommandStartup::OnComplete(TaskStatus status)
 	{
-		JadeCore::Logger::LogInfo("Registering Command Complete", "StartUp");
+		JadeCore::Logger::LogInfo("StartUp", "Registering Command Complete");
 	}
 }

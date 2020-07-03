@@ -11,7 +11,7 @@ namespace JadeCore
 		// 1. Register the Logger
 		const auto appender = new ConsoleAppender();
 		Logger::RegisterAppender(appender);
-		Logger::LogInfo("Added Console Appender.", "CoreStartup");
+		Logger::LogInfo("CoreStartup", "Added Console Appender.");
 		
 		// Finish the task
 		Finish();
@@ -19,6 +19,6 @@ namespace JadeCore
 
 	void StartupTask::OnComplete(TaskStatus status)
 	{
-		Logger::LogInfo("Core startup complete! Status : ", "CoreStartup");
+		Logger::LogInfo("CoreStartup", "Core startup complete! Status : ");
 	}
 }

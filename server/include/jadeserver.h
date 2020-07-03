@@ -14,7 +14,6 @@
 /****************************** RPC ******************************/
 
 #include "rpc/rpc.h"
-#include "rpc/rpc_handler_status.h"
 #include "rpc/rpc_handler.h"
 
 #endif

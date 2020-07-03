@@ -3,87 +3,137 @@
 #ifndef JADE_SERVER_INCLUDE_RPC_RPC_HANDLER_BASE_H_
 #define JADE_SERVER_INCLUDE_RPC_RPC_HANDLER_BASE_H_
 
-#include <grpcpp/impl/codegen/completion_queue_impl.h>
-#include "../../../core/gen/server.grpc.pb.h"
+#include <deque>
 
-#include "rpc_handler_status.h"
+#include <grpcpp/impl/codegen/completion_queue_impl.h>
+
+#include "../../../core/include/jadecore.h"
+
+using std::string;
+using std::deque;
+using std::mutex;
+using std::unique_ptr;
+using std::shared_ptr;
+using google::protobuf::Message;
+using grpc::ServerCompletionQueue;
+using grpc_impl::ServerContext;
+using grpc_impl::ServerAsyncReaderWriter;
+using JadeCore::RpcBase;
+using JadeCore::Command;
 
 namespace JadeServer
 {	
 	class RpcHandler
 	{
-	protected:
-		/**
-		 * \brief Async service
-		 */
-		JadeCore::RpcBase::AsyncService* service_;
+	private:
 
 		/**
-		 * \brief The completion queue
+		 * \brief A session id used to identify the handler
 		 */
-		grpc::ServerCompletionQueue* completion_queue_;
-
+		const uint64_t id_;
+		
+		/**
+		 * \brief Rpc Status of the current handler
+		 */
+		RpcStatus status_;
+		
+		/**
+		 * \brief Rpc completion queue
+		 */
+		unique_ptr<ServerCompletionQueue> rpc_queue_;
+		
+		/**
+		 * \brief Notification completion queue
+		 */
+		unique_ptr<ServerCompletionQueue> notification_queue_;
+		
 		/**
 		 * \brief The gRPC server context
 		 */
-		grpc_impl::ServerContext context_;
+		unique_ptr<ServerContext> server_context_;
 
 		/**
-		 * \brief The request
+		 * \brief The async service used to respond to rpcs
 		 */
-		JadeCore::CommandRequest command_request_;
-
-		/**
-		 * \brief The response
-		 */
-		JadeCore::CommandResponse command_response_;
+		unique_ptr<RpcBase::AsyncService> service_;
 
 		/**
 		 * \brief The responder
 		 */
-		grpc_impl::ServerAsyncReaderWriter<JadeCore::CommandResponse, JadeCore::CommandRequest> command_responder_;
-
-		
-		/**
-		 * \brief The status of the request
-		 */
-		RpcHandlerStatus status_;
+		ServerAsyncReaderWriter<Command, Command> command_stream_;
 
 		/**
-		 * \brief Specify if the task was successful 
+		 * \brief The request
 		 */
-		bool ok_ = true;
+		Command command_;
+
+		/**
+		 * \brief The queue used to respond to the client
+		 */
+		deque<shared_ptr<Command>> command_queue_ {};
+
+		/**
+		 * \brief The lock used to ensure that multiple process is not called many times
+		 */
+		unique_ptr<mutex> handler_lock_;
 		
 	public:
 		
 		/**
 		 * \brief Spawn a new request
-		 * \param service 
-		 * \param completion_queue 
+		 * Set the id of the handler
+		 * \param id Id of the handler
+		 * \param rpc_queue rpc completion queue
+		 * \param notification_queue notification completion queue
+		 * \param service the async service
 		 */
-		RpcHandler(JadeCore::RpcBase::AsyncService* service, grpc_impl::ServerCompletionQueue* completion_queue);
+		RpcHandler(
+			uint64_t id, 
+			ServerCompletionQueue &rpc_queue,
+			ServerCompletionQueue &notification_queue,
+			RpcBase::AsyncService &service);
 
 		/**
-		 * \brief Get the current status of the rpc handler
+		 * \brief Get status of the handler
 		 * \return 
 		 */
-		RpcHandlerStatus GetStatus();
+		RpcStatus GetStatus() const;
 
+		/**
+		 * \brief Get the server context
+		 * \return 
+		 */
+		unique_ptr<ServerContext> GetServerContext() const;
+
+		/**
+		 * \brief Get a lock for the handler
+		 * \return
+		 */
+		unique_ptr<mutex> GetHandlerLock() const;
+		
 		/**
 		 * \brief Create a new handler
 		 * \return
 		 */
-		void Create();
+		bool Create();
 
 		/**
-		 * \brief Process and respond to a rpc request
+		 * \brief Process a Rpc event
+		 * \param event 
 		 */
-		void Process();
+		void Process(RpcEvent event);
 		
 		/**
 		 * \brief Dispose a handler
 		 */
-		void Dispose();
+		void Complete();
+
+		/**
+		 * \brief Send a command to a connected client
+		 * \param operation 
+		 * \param command 
+		 */
+		void SendClientCommand(int operation, Message* command);
 	};
 }
 

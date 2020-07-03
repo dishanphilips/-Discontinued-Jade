@@ -6,6 +6,8 @@
 #include <string>
 #include <vector>
 
+using std::string;
+
 namespace JadeCore
 {
 	static class StringUtils
@@ -20,7 +22,23 @@ namespace JadeCore
 		 * \param suffix
 		 * \return
 		 */
-		static std::vector<std::string> Split(std::string string, char delimiter, std::string prefix = "", std::string suffix = "");
+		static std::vector<std::string> Split(string string, char delimiter, std::string prefix = "", std::string suffix = "");
+
+		/**
+		 * \brief Format a given string with the arguments provided
+		 * \param format
+		 * \param args
+		 * \return
+		 */
+		static std::string Format(const std::string format, va_list args);
+		
+		/**
+		 * \brief Format a given string with the arguments provided
+		 * \param format 
+		 * \param ... 
+		 * \return 
+		 */
+		static std::string Format(const std::string format, ...);
 	};
 
 }
