@@ -4,11 +4,11 @@
 #ifndef JADE_CORE_INCLUDE_STARTUP_STARTUP_TASK_H_
 #define JADE_CORE_INCLUDE_STARTUP_STARTUP_TASK_H_
 
-#include "../task/task_base.h"
+#include "task/task_base.h"
 
 namespace JadeCore
 {
-	class StartupTask : public TaskBase
+	class CoreStartupTask : public TaskBase
 	{
 	public:
 		

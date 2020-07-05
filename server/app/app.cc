@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../include/jadeserver.h"
+#include "jadeserver.h"
 
 int main(int, char* [])
 {

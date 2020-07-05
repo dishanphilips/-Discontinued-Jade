@@ -1,4 +1,4 @@
-#include "../../include/rpc/rpc_event.h"
+#include "rpc/rpc_event.h"
 
 std::ostream& operator << (std::ostream& stream, RpcEvent status)
 {

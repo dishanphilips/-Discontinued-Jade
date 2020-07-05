@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../../../core/include/jadecore.h"
+#include "jadecore.h"
 
-#include "../../include/server/server.h"
+#include "server/server.h"
 
 namespace JadeServer
 {

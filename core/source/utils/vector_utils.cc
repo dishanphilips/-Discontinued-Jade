@@ -1,4 +1,4 @@
-#include "../../include/utils/vector_utils.h"
+#include "utils/vector_utils.h"
 
 namespace JadeCore
 {

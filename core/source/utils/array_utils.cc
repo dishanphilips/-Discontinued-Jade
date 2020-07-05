@@ -1,4 +1,4 @@
-#include "../../include/utils/array_utils.h"
+#include "utils/array_utils.h"
 
 namespace JadeCore
 {

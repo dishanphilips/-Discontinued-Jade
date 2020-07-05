@@ -1,8 +1,8 @@
-#include "../../include/utils/string_utils.h"
-
 #include <cstdarg>
 #include <memory>
 #include <stdexcept>
+
+#include "utils/string_utils.h"
 
 using std::string;
 using std::unique_ptr;

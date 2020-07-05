@@ -2,8 +2,8 @@
 #include <list>
 #include <string>
 
-#include "../../include/logger/logger.h"
-#include "../../include/logger/i_log_appender.h"
+#include "logger/logger.h"
+#include "logger/i_log_appender.h"
 
 using std::string;
 

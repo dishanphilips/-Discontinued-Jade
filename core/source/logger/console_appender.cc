@@ -3,12 +3,11 @@
 #include <vector>
 #include <cstdarg>
 
-#include "../../include/logger/logger.h"
-#include "../../include/utils/date_time_utils.h"
-#include "../../include/utils/string_utils.h"
-#include "../../include/utils/vector_utils.h"
-
-#include "../../include/logger/console_appender.h"
+#include "logger/logger.h"
+#include "logger/console_appender.h"
+#include "utils/date_time_utils.h"
+#include "utils/string_utils.h"
+#include "utils/vector_utils.h"
 
 namespace JadeCore
 {

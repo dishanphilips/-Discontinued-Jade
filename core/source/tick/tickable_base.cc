@@ -1,7 +1,7 @@
 # pragma once
 
-#include "../../include/tick/tickable_base.h"
-#include "../../include/tick/ticker.h"
+#include "tick/tickable_base.h"
+#include "tick/ticker.h"
 
 namespace JadeCore
 {

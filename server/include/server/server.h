@@ -3,9 +3,9 @@
 #ifndef JADE_SERVER_INCLUDE_SERVER_SERVER_H_
 #define JADE_SERVER_INCLUDE_SERVER_SERVER_H_
 
-#include "../../../core/include/jadecore.h"
+#include "jadecore.h"
 
-#include "../startup/startup_task.h"
+#include "startup/startup_task.h"
 #include "server.h"
 
 namespace JadeServer

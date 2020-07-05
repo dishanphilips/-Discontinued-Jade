@@ -7,7 +7,7 @@
 
 #include <grpcpp/impl/codegen/completion_queue_impl.h>
 
-#include "../../../core/include/jadecore.h"
+#include "jadecore.h"
 
 using std::string;
 using std::deque;

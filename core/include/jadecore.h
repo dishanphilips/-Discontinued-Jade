@@ -12,7 +12,7 @@
 
 /****************************** Startup ******************************/
 
-#include "startup/startup_task.h"
+#include "startup/core_startup_task.h"
 
 /****************************** Task ******************************/
 

@@ -1,7 +1,5 @@
-#include <stdexcept>
-
-#include "../../include/command/command_executor.h"
-#include "../../include/command/i_command_handler.h"
+#include "command/command_executor.h"
+#include "command/i_command_handler.h"
 
 namespace JadeCore
 {

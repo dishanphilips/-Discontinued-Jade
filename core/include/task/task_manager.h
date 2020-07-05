@@ -3,7 +3,7 @@
 #ifndef JADE_CORE_INCLUDE_TASK_TASK_MANAGER_H_
 #define JADE_CORE_INCLUDE_TASK_TASK_MANAGER_H_
 
-#include "../tick/tickable_base.h"
+#include "tick/tickable_base.h"
 
 #include "task_base.h"
 

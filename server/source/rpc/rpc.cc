@@ -1,9 +1,9 @@
 #include <grpcpp/server_builder.h>
 
-#include "../../../core/include/jadecore.h"
+#include "jadecore.h"
 
-#include "../../include/rpc/rpc.h"
-#include "../../include/rpc/rpc_handler.h"
+#include "rpc/rpc.h"
+#include "rpc/rpc_handler.h"
 
 using std::lock_guard;
 using std::mutex;

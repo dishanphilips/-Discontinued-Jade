@@ -3,7 +3,7 @@
 #ifndef JADE_SERVER_INCLUDE_STARTUP_COMMAND_STARTUP_H_
 #define JADE_SERVER_INCLUDE_STARTUP_COMMAND_STARTUP_H_
 
-#include "../../../core/include/jadecore.h"
+#include "jadecore.h"
 
 namespace JadeServer
 {

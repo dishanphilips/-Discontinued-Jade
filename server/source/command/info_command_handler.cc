@@ -1,5 +1,5 @@
-#include "../../../core/include/jadecore.h"
-#include "../../include/command/info_command_handler.h"
+#include "jadecore.h"
+#include "command/info_command_handler.h"
 
 namespace JadeServer
 {

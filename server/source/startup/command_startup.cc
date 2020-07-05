@@ -1,5 +1,5 @@
-#include "../../include/startup/command_startup.h"
-#include "../../include/command/info_command_handler.h"
+#include "startup/command_startup.h"
+#include "command/info_command_handler.h"
 
 namespace JadeServer
 {

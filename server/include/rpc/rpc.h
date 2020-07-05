@@ -7,9 +7,9 @@
 
 #include <grpcpp/server.h>
 
-#include "../../../core/include/jadecore.h"
+#include "jadecore.h"
 
-#include "../../include/rpc/rpc_handler.h"
+#include "rpc/rpc_handler.h"
 
 using std::thread;
 using std::shared_ptr;

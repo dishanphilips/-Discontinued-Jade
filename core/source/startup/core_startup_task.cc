@@ -1,12 +1,12 @@
 #pragma once
 
-#include "../../include/startup/startup_task.h"
-#include "../../include/logger/console_appender.h"
-#include "../../include/logger/logger.h"
+#include "startup/core_startup_task.h"
+#include "logger/console_appender.h"
+#include "logger/logger.h"
 
 namespace JadeCore
 {
-	void StartupTask::Execute()
+	void CoreStartupTask::Execute()
 	{
 		// 1. Register the Logger
 		const auto appender = new ConsoleAppender();
@@ -17,7 +17,7 @@ namespace JadeCore
 		Finish();
 	}
 
-	void StartupTask::OnComplete(TaskStatus status)
+	void CoreStartupTask::OnComplete(TaskStatus status)
 	{
 		Logger::LogInfo("CoreStartup", "Core startup complete! Status : ");
 	}

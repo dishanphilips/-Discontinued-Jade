@@ -8,12 +8,12 @@
 #include <vector>
 #include <cstdarg>
 
-#include "../../include/logger/logger.h"
-#include "../../include/utils/date_time_utils.h"
+#include "logger/logger.h"
+#include "utils/date_time_utils.h"
 
 #include "log_level.h"
 #include "i_log_appender.h"
-#include "../tick/tickable_base.h"
+#include "tick/tickable_base.h"
 
 using std::string;
 using std::list;

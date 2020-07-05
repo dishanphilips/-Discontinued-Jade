@@ -1,4 +1,4 @@
-#include "../../include/rpc/rpc_status.h"
+#include "rpc/rpc_status.h"
 
 std::ostream& operator << (std::ostream& stream, RpcStatus status)
 {

@@ -3,14 +3,14 @@
 #ifndef JADE_SERVER_INCLUDE_STARTUP_STARTUP_TASK_H_
 #define JADE_SERVER_INCLUDE_STARTUP_STARTUP_TASK_H_
 
-#include "../../../core/include/jadecore.h"
+#include "jadecore.h"
 
-#include "../rpc/rpc.h"
+#include "rpc/rpc.h"
 #include "startup_task.h"
 
 namespace JadeServer
 {
-	class StartupTask : public JadeCore::StartupTask
+	class StartupTask : public JadeCore::CoreStartupTask
 	{
 	private:
 

@@ -1,7 +1,6 @@
+#include "jadecore.h";
 
-#include "../../../core/include/jadecore.h";
-
-#include "../../include/rpc/rpc_handler.h"
+#include "rpc/rpc_handler.h"
 
 namespace JadeServer
 {

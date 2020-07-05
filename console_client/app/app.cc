@@ -13,8 +13,7 @@ using grpc::ClientAsyncReaderWriter;
 using grpc::ClientContext;
 using grpc::CompletionQueue;
 using grpc::Status;
-using JadeCore::CommandRequest;
-using JadeCore::CommandResponse;
+using JadeCore::Command;
 using JadeCore::InfoRequest;
 using JadeCore::InfoResponse;
 
@@ -53,7 +52,7 @@ public:
         infoRequest.set_message(user);
     	
         // Data we are sending to the server.
-        CommandRequest request;
+        Command request;
         request.set_operation(1);
         request.set_request(request.SerializeAsString());
 
@@ -77,7 +76,7 @@ public:
 
 private:
     void AsyncHelloRequestNextMessage() {
-        std::cout << " ** Got response: " << response_.response() << std::endl;
+        std::cout << " ** Got response: " << response_.request() << std::endl;
 
         // The tag is the link between our thread (main thread) and the completion
         // queue thread. The tag allows the completion queue to fan off
@@ -152,13 +151,13 @@ private:
     std::unique_ptr<JadeCore::RpcBase::Stub> stub_;
 
     // The bidirectional, asynchronous stream for sending/receiving messages.
-    std::unique_ptr<ClientAsyncReaderWriter<CommandRequest, CommandResponse>> stream_;
+    std::unique_ptr<ClientAsyncReaderWriter<Command, Command>> stream_;
 
     // Allocated protobuf that holds the response. In real clients and servers,
     // the memory management would a bit more complex as the thread that fills
     // in the response should take care of concurrency as well as memory
     // management.
-    CommandResponse response_;
+    Command response_;
 
     // Thread that notifies the gRPC completion queue tags.
     std::unique_ptr<std::thread> grpc_thread_;
