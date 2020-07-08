@@ -11,15 +11,6 @@
 
 #include "rpc/rpc_handler.h"
 
-using std::thread;
-using std::shared_ptr;
-using std::unique_ptr;
-using std::unordered_map;
-using grpc::Server;
-using grpc::ServerCompletionQueue;
-using JadeCore::RpcBase;
-using JadeServer::RpcHandler;
-
 namespace JadeServer
 {
 	class Rpc final : public JadeCore::RpcBase::AsyncService
@@ -29,32 +20,32 @@ namespace JadeServer
 		/**
 		 * \brief The completion queue for Rpc
 		 */
-		std::unique_ptr<ServerCompletionQueue> rpc_queue {};
+		std::unique_ptr<grpc::ServerCompletionQueue> rpc_queue {};
 
 		/**
 		 * \brief The completion queue for notifications
 		 */
-		std::unique_ptr<ServerCompletionQueue> notification_queue_ {};
+		std::unique_ptr<grpc::ServerCompletionQueue> notification_queue_ {};
 		
 		/**
 		 * \brief Instance of the Rpc server
 		 */
-		std::unique_ptr<Server> server_ {};
+		std::unique_ptr<grpc_impl::Server> server_ {};
 
 		/**
 		 * \brief Async service
 		 */
-		RpcBase::AsyncService service_ {};
+		JadeCore::RpcBase::AsyncService service_ {};
 
 		/**
 		 * \brief The thread that handles the Rpc completion queue
 		 */
-		thread rpc_thread_;
+		std::thread rpc_thread_;
 
 		/**
 		 * \brief The thread that handles the notification completion queue
 		 */
-		thread notification_thread_;
+		std::thread notification_thread_;
 				
 		/**
 		 * \brief Denotes if the rpc server is listening
@@ -64,22 +55,22 @@ namespace JadeServer
 		/**
 		 * \brief Used to allocate new sessions
 		 */
-		std::atomic_int64_t handler_allocator {0};
+		std::atomic_int64_t handler_allocator_ {0};
 
 		/**
 		 * \brief A lock to ensure no overstepping on handler processes
 		 */
-		mutex handlers_lock_;
+		std::mutex handlers_lock_;
 
 		/**
 		 * \brief A collection of all the handlers that are being handled by the rpc server
 		 */
-		unordered_map<uint64_t, shared_ptr<RpcHandler>> handlers_ {};
+		std::unordered_map<uint64_t, std::shared_ptr<RpcHandler>> handlers_ {};
 
 		/**
 		 * \brief A map of all connected clients
 		 */
-		unordered_map<string, uint64_t> clients_ {};
+		std::unordered_map<string, uint64_t> clients_ {};
 		
 		/**
 		 * \brief Start handling RPCs
@@ -95,7 +86,7 @@ namespace JadeServer
 		 * \brief Process the completion queue
 		 * \param completion_queue_
 		 */
-		void ProcessCompletionQueue(unique_ptr<ServerCompletionQueue> & completion_queue_);
+		void ProcessCompletionQueue(std::unique_ptr<grpc::ServerCompletionQueue> & completion_queue_);
 
 		/**
 		 * \brief Spawn a new handler
@@ -127,7 +118,7 @@ namespace JadeServer
 		 * \param operation 
 		 * \param command 
 		 */
-		void SendClientCommand(string client_id, int operation, Message* command);
+		void SendClientCommand(string client_id, int operation, grpc::protobuf::Message* command);
 
 		/**
 		 * \brief Send a command to a connected client
@@ -135,7 +126,7 @@ namespace JadeServer
 		 * \param operation
 		 * \param command
 		 */
-		void SendClientCommand(uint64_t handler_id, int operation, Message* command);
+		void SendClientCommand(uint64_t handler_id, int operation, grpc::protobuf::Message* command);
 	};
 }
 

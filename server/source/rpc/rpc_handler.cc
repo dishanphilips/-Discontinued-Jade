@@ -5,17 +5,13 @@
 namespace JadeServer
 {
 	RpcHandler::RpcHandler(
-		uint64_t id,
-		ServerCompletionQueue&rpc_queue,
-		ServerCompletionQueue&notification_queue,
-		RpcBase::AsyncService&service) :
+		uint64_t id) :
 		id_(id),
 		status_(RpcStatus::Connecting),
-		rpc_queue_(&rpc_queue),
-		notification_queue_(&notification_queue),
-		server_context_(),
-		service_(&service),
-		command_stream_(server_context_.get())
+		server_context_(std::make_shared<grpc::ServerContext>()),
+		command_stream_(server_context_.get()),
+		command_queue_(),
+		handler_lock_(std::make_shared<std::mutex>())
 	{
 	}
 
@@ -24,24 +20,24 @@ namespace JadeServer
 		return status_;
 	}
 
-	unique_ptr<ServerContext> RpcHandler::GetServerContext() const
+	std::shared_ptr<grpc::ServerContext> RpcHandler::GetServerContext() const
 	{
-		return unique_ptr<ServerContext>{server_context_.get()};
-	}
-	
-	unique_ptr<mutex> RpcHandler::GetHandlerLock() const
-	{
-		return unique_ptr<mutex>(handler_lock_.get());
+		return server_context_;
 	}
 
-	bool RpcHandler::Create()
+	std::shared_ptr<std::mutex> RpcHandler::GetHandlerLock() const
+	{
+		return handler_lock_;
+	}
+
+	bool RpcHandler::Create(JadeCore::RpcBase::AsyncService &service, grpc::ServerCompletionQueue* rpc_queue, grpc::ServerCompletionQueue* notification_queue)
 	{
 		// Initialize the handler
-		service_->RequestHandle(
+		service.RequestHandle(
 			server_context_.get(), 
 			&command_stream_, 
-			rpc_queue_.get(), 
-			notification_queue_.get(), 
+			rpc_queue,
+			notification_queue,
 			reinterpret_cast<void*>(id_ << GRPC_EVENT_BIT_LENGTH | RpcEvent::Initialized));
 
 		return true;
@@ -98,7 +94,7 @@ namespace JadeServer
 		);
 	}
 	
-	void RpcHandler::SendClientCommand(int operation, Message* command)
+	void RpcHandler::SendClientCommand(int operation, grpc::protobuf::Message* command)
 	{
 		// Check if there is anything to be written
 		if (status_ != RpcStatus::WriteReady && status_ != RpcStatus::WriteComplete)
@@ -107,7 +103,7 @@ namespace JadeServer
 		}
 		else
 		{
-			auto command_request = std::make_shared<Command>();
+			auto command_request = std::make_shared<JadeCore::Command>();
 			command_request->set_operation(operation);
 			command_request->set_request(command->SerializeAsString());
 

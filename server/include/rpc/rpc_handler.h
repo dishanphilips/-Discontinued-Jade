@@ -9,18 +9,6 @@
 
 #include "jadecore.h"
 
-using std::string;
-using std::deque;
-using std::mutex;
-using std::unique_ptr;
-using std::shared_ptr;
-using google::protobuf::Message;
-using grpc::ServerCompletionQueue;
-using grpc_impl::ServerContext;
-using grpc_impl::ServerAsyncReaderWriter;
-using JadeCore::RpcBase;
-using JadeCore::Command;
-
 namespace JadeServer
 {	
 	class RpcHandler
@@ -38,44 +26,29 @@ namespace JadeServer
 		RpcStatus status_;
 		
 		/**
-		 * \brief Rpc completion queue
-		 */
-		unique_ptr<ServerCompletionQueue> rpc_queue_;
-		
-		/**
-		 * \brief Notification completion queue
-		 */
-		unique_ptr<ServerCompletionQueue> notification_queue_;
-		
-		/**
 		 * \brief The gRPC server context
 		 */
-		unique_ptr<ServerContext> server_context_;
-
-		/**
-		 * \brief The async service used to respond to rpcs
-		 */
-		unique_ptr<RpcBase::AsyncService> service_;
-
+		std::shared_ptr<grpc::ServerContext> server_context_;
+		
 		/**
 		 * \brief The responder
 		 */
-		ServerAsyncReaderWriter<Command, Command> command_stream_;
+		grpc::ServerAsyncReaderWriter<JadeCore::Command, JadeCore::Command> command_stream_;
 
 		/**
 		 * \brief The request
 		 */
-		Command command_;
+		JadeCore::Command command_;
 
 		/**
 		 * \brief The queue used to respond to the client
 		 */
-		deque<shared_ptr<Command>> command_queue_ {};
+		std::deque<std::shared_ptr<JadeCore::Command>> command_queue_;
 
 		/**
 		 * \brief The lock used to ensure that multiple process is not called many times
 		 */
-		unique_ptr<mutex> handler_lock_;
+		std::shared_ptr<std::mutex> handler_lock_;
 		
 	public:
 		
@@ -83,15 +56,8 @@ namespace JadeServer
 		 * \brief Spawn a new request
 		 * Set the id of the handler
 		 * \param id Id of the handler
-		 * \param rpc_queue rpc completion queue
-		 * \param notification_queue notification completion queue
-		 * \param service the async service
 		 */
-		RpcHandler(
-			uint64_t id, 
-			ServerCompletionQueue &rpc_queue,
-			ServerCompletionQueue &notification_queue,
-			RpcBase::AsyncService &service);
+		RpcHandler(uint64_t id);
 
 		/**
 		 * \brief Get status of the handler
@@ -103,19 +69,22 @@ namespace JadeServer
 		 * \brief Get the server context
 		 * \return 
 		 */
-		unique_ptr<ServerContext> GetServerContext() const;
+		std::shared_ptr<grpc::ServerContext> GetServerContext() const;
 
 		/**
-		 * \brief Get a lock for the handler
+		 * \brief Get the server context
 		 * \return
 		 */
-		unique_ptr<mutex> GetHandlerLock() const;
-		
+		std::shared_ptr<std::mutex> GetHandlerLock() const;
+
 		/**
 		 * \brief Create a new handler
-		 * \return
+		 * \param service 
+		 * \param rpc_queue 
+		 * \param notification_queue 
+		 * \return 
 		 */
-		bool Create();
+		bool Create(JadeCore::RpcBase::AsyncService &service, grpc::ServerCompletionQueue* rpc_queue, grpc::ServerCompletionQueue* notification_queue);
 
 		/**
 		 * \brief Process a Rpc event
@@ -133,7 +102,7 @@ namespace JadeServer
 		 * \param operation 
 		 * \param command 
 		 */
-		void SendClientCommand(int operation, Message* command);
+		void SendClientCommand(int operation, grpc::protobuf::Message* command);
 	};
 }
 
